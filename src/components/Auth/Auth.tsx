@@ -3,7 +3,7 @@ import Signup from './Signup';
 
 
 interface AuthProps {
-  
+  // updateLocalStorage: (newToken: string) => void 
 }
  
 interface AuthState {

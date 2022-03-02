@@ -8,8 +8,8 @@ interface SignupProps {
 interface SignupState {
   email: string,
   password: string,
-  admin: boolean,
-  houseCode: number
+  admin: string,
+  houseCode: string
 }
  
 class Signup extends React.Component<SignupProps, SignupState> {
@@ -19,8 +19,8 @@ class Signup extends React.Component<SignupProps, SignupState> {
     this.state = { 
       email: '',
       password: '',
-      admin: false,
-      houseCode: 0,
+      admin: "false",
+      houseCode: '',
      };
   }
 
@@ -30,8 +30,8 @@ class Signup extends React.Component<SignupProps, SignupState> {
     const requestObject = {
       email: this.state.email,
       password: this.state.password,
-      admin: this.state.admin,
-      houseCode: this.state.houseCode
+      admin: Boolean(this.state.admin),
+      houseCode: Number(this.state.houseCode)
     }
 
       try {
@@ -44,19 +44,31 @@ class Signup extends React.Component<SignupProps, SignupState> {
         })
         const data = await res.json()
         console.log(data)
-
-
         
+          this.setState({
+            email: '',
+            password: '',
+            admin: "false",
+            houseCode: ''
+          })
+          
         
       } catch (error) {
         console.log({error})
-      }};
-      
-  changeState = () => {
-    this.setState({
-      email: this.e.target.value,
-    })
-  }
+      }
+    
+    };
+
+
+      changeState = (e: any) => {
+        this.setState({
+          email: this.e.target.value,
+          password: this.e.target.value,
+          admin: this.e.target.value,
+          houseCode: this.e.target.value
+        })
+      } 
+  
 
     render() { 
       return (
@@ -66,18 +78,19 @@ class Signup extends React.Component<SignupProps, SignupState> {
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label htmlFor='email' style={{fontFamily: 'Poppins'}}>Email :</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={this.changeState} name="email" type='email' value={this.state.email} />
+              <Input style={{border: 'solid black 3px'}} onChange={(e:any)=> this.setState({email: e.target.value})} name="email" type='email' value={this.state.email} />
 
               <Label htmlFor='password' style={{fontFamily: 'Poppins'}} >Password :</Label>
               <Input style={{border: 'solid black 3px'}} onChange={this.changeState} name='password' type='password'  value={this.state.password}/>
               
               <Label htmlFor='admin' style={{fontFamily: 'Poppins'}} >House Leader :</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={this.changeState} name='admin' type='select' value={this.state.admin} />
+              <Input style={{border: 'solid black 3px'}} onChange={(e:any)=> this.setState({admin: (e.target.value)})} name='admin' type='select' value={this.state.admin}>
               <option value="true">House Leader</option>
               <option value="false">House Member</option>
+              </Input>
 
               <Label htmlFor='houseCode' style={{fontFamily: 'Poppins'}} >Enter a unique house code:</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={this.changeState} name='houseCode' type='number'  value={this.state.houseCode}/>
+              <Input style={{border: 'solid black 3px'}} onChange={this.changeState} name='houseCode' type='text'  value={String(this.state.houseCode)}/>
 
             </FormGroup>
           </Form>
