@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ButtonToggle, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, ButtonToggle, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 interface SignupProps {
- 
+  updateLocalStorage: (newToken: string) => void 
 }
  
 interface SignupState {
@@ -35,7 +35,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
     }
 
       try {
-        const res = await fetch('http://localhost:6000/user/signup', {
+        const res = await fetch('http://localhost:4000/user/signup', {
           method: 'POST',
           body: JSON.stringify(requestObject),
           headers: new Headers({
@@ -43,7 +43,10 @@ class Signup extends React.Component<SignupProps, SignupState> {
           }),
         })
         const data = await res.json()
-        console.log(data)
+      
+        this.props.updateLocalStorage(data.sessionToken)
+       console.log(data)
+
         
           this.setState({
             email: '',
@@ -60,15 +63,6 @@ class Signup extends React.Component<SignupProps, SignupState> {
     };
 
 
-      changeState = (e: any) => {
-        this.setState({
-          email: this.e.target.value,
-          password: this.e.target.value,
-          admin: this.e.target.value,
-          houseCode: this.e.target.value
-        })
-      } 
-  
 
     render() { 
       return (
@@ -77,22 +71,29 @@ class Signup extends React.Component<SignupProps, SignupState> {
         <Container>
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
+
               <Label htmlFor='email' style={{fontFamily: 'Poppins'}}>Email :</Label>
               <Input style={{border: 'solid black 3px'}} onChange={(e:any)=> this.setState({email: e.target.value})} name="email" type='email' value={this.state.email} />
+              </FormGroup>
 
+              <FormGroup>
               <Label htmlFor='password' style={{fontFamily: 'Poppins'}} >Password :</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={this.changeState} name='password' type='password'  value={this.state.password}/>
-              
+              <Input style={{border: 'solid black 3px'}} onChange={(e:any)=> this.setState({password: e.target.value})} name='password' type='password'  value={this.state.password}/>
+              </FormGroup>
+
+              <FormGroup>
               <Label htmlFor='admin' style={{fontFamily: 'Poppins'}} >House Leader :</Label>
               <Input style={{border: 'solid black 3px'}} onChange={(e:any)=> this.setState({admin: (e.target.value)})} name='admin' type='select' value={this.state.admin}>
               <option value="true">House Leader</option>
               <option value="false">House Member</option>
               </Input>
+              </FormGroup>
 
+              <FormGroup>
               <Label htmlFor='houseCode' style={{fontFamily: 'Poppins'}} >Enter a unique house code:</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={this.changeState} name='houseCode' type='text'  value={String(this.state.houseCode)}/>
-
+              <Input style={{border: 'solid black 3px'}} onChange={(e:any)=> this.setState({houseCode: (e.target.value)})} name='houseCode' type='text'  value={String(this.state.houseCode)}/>
             </FormGroup>
+            <Button type='submit'>Sign Up</Button>
           </Form>
         </Container>
       </div>  
@@ -100,8 +101,6 @@ class Signup extends React.Component<SignupProps, SignupState> {
     }
 
   }
-
-
 
 
  
