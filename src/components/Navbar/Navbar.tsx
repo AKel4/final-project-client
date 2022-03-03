@@ -1,6 +1,11 @@
-import React, { Component } from 'react'
-import { Nav, Navbar, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarBrand, NavbarToggler, Collapse } from 'reactstrap'
-import Logout from './Logout';
+import React from 'react'
+import Logout from './Logout'
+
+
+import Navbar from 'react-bootstrap/NavBar'
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 
 interface SitebarProps {
   clearLocalStorage: () => void
@@ -15,18 +20,21 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
     super(props);
     this.state = {   };
   }
+  
   render() { 
     return ( 
-      <div>
-      <Navbar style={{backgroundColor:'#1CA5B8', color: 'black', width:'100%', borderBottom: 'solid black 4px'}}>
-        <NavbarBrand>
-          <h3>hello from navbar</h3>
-        <Logout clearLocalStorage={this.props.clearLocalStorage} /> 
-        </NavbarBrand>
-        <NavbarToggler />
-        <Collapse></Collapse>
-      </Navbar>
-      </div>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+      <Navbar.Brand href="#home">ADHD-Clean</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="me-auto">
+          <Nav.Link href="#About">About Us</Nav.Link>
+          <Nav.Link href="#auth">Signup/Login</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+      </Container>
+    </Navbar>
      );
   }
 }

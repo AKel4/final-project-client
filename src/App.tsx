@@ -1,8 +1,12 @@
+//* react hook imports
 import React, { useEffect, useState } from 'react';
-import { Container, Navbar } from 'reactstrap';
+
+//* styling library imports
+import { Col, Container, Navbar, Row } from 'reactstrap';
 import './App.css';
+
+//* Component imports 
 import Auth from './components/Auth/Auth';
-import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit'
 import Sitebar from './components/Navbar/Navbar';
 import CreateDisplay from './components/Rooms/CreateDisplay';
 import Display from './components/Rooms/Display';
@@ -43,20 +47,22 @@ const App = () => {
           <RoomNav clearLocalStorage={clearLocalStorage} />
         )}
 
-    <MDBContainer className="mainApp">
-      <MDBRow className="mt-4 text-center">
-        <MDBCol md="3" className="mb-4">
+        <Container>
+          <Row>
+            <Col sm={true}>
+              
+              {!token ? (
+                <Auth updateLocalStorage={updateLocalStorage} token={token}/>
+              ) : (
+                <><Display token={token} /><CreateDisplay token={token} /></>
+              )}
 
-        {!token ? (
-          <Auth updateLocalStorage={updateLocalStorage} token={token}/>
-        ) : (
-          <><Display token={token} /><CreateDisplay token={token} /></>
-        )}
+            </Col>
+          </Row>
+        </Container>
 
 
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer >
+
     </>
   );
 }
