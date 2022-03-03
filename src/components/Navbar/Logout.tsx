@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button } from 'reactstrap';
 
 interface LogoutProps {
   clearLocalStorage: () => void
@@ -14,7 +15,7 @@ class Logout extends React.Component<LogoutProps, LogoutState> {
     this.state = {   };
   }
   render() { 
-    return ( <div> <button onClick={this.props.clearLocalStorage} > Logout </button></div> );
+    return ( <div> <Button onClick={this.props.clearLocalStorage} > Logout </Button></div> );
   }
 }
  

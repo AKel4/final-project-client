@@ -73,7 +73,7 @@ class Login extends React.Component<LoginProps, LoginState> {
               <Input style={{border: 'solid black 3px'}} onChange={(e:any)=> this.setState({password: e.target.value})} name='password' type='password'  value={this.state.password}/>
               </FormGroup>
 
-            <Button type='submit'>Sign Up</Button>
+            <Button type='submit'>Login</Button>
           </Form>
         </Container>
       </div>  

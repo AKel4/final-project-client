@@ -1,34 +1,35 @@
 import React, { Component } from 'react'
 import { Nav, Navbar, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarBrand, NavbarToggler, Collapse } from 'reactstrap'
-import Logout from './Logout';
+import Logout from '../../Navbar/Logout';
 
-interface SitebarProps {
+
+
+interface RoomNavProps {
   clearLocalStorage: () => void
 }
  
-interface SitebarState {
+interface RoomNavState {
   
 }
  
-class Sitebar extends React.Component<SitebarProps, SitebarState> {
-  constructor(props: SitebarProps) {
+class RoomNav extends React.Component<RoomNavProps, RoomNavState> {
+  constructor(props: RoomNavProps) {
     super(props);
-    this.state = {   };
+    this.state = {  };
   }
   render() { 
     return ( 
-      <div>
-      <Navbar style={{backgroundColor:'#1CA5B8', color: 'black', width:'100%', borderBottom: 'solid black 4px'}}>
+    <div>
+      <Navbar style={{backgroundColor:'#1CA5B8', width:'100%', borderBottom: 'solid black 4px'}}>
         <NavbarBrand>
-          <h3>hello from navbar</h3>
+          hellow from RoomNav
         <Logout clearLocalStorage={this.props.clearLocalStorage} /> 
         </NavbarBrand>
         <NavbarToggler />
         <Collapse></Collapse>
       </Navbar>
-      </div>
-     );
+    </div> );
   }
 }
  
-export default Sitebar;
+export default RoomNav;
