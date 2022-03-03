@@ -3,7 +3,9 @@ import { Container, Navbar } from 'reactstrap';
 import './App.css';
 import Auth from './components/Auth/Auth';
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit'
-
+import Sitebar from './components/Navbar/Navbar';
+import CreateDisplay from './components/Rooms/CreateDisplay';
+import Display from './components/Rooms/Display';
 
 
 const App = () => {
@@ -33,24 +35,24 @@ const App = () => {
 
 
   return (
+    <>
+     <Sitebar clearLocalStorage={clearLocalStorage}/>
+
     <MDBContainer className="mainApp">
       <MDBRow className="mt-4 text-center">
         <MDBCol md="3" className="mb-4">
           <Auth updateLocalStorage={updateLocalStorage} />
 
-          <Navbar clearLocalStorage={clearLocalStorage}/>
-      
-
           <div className="peach-gradient color-block-5 mb-3 mx-auto z-depth-1" style={{padding: '15vh'}} >
 
-          <br />
-          <br />
-          <button onClick={clearLocalStorage} > Logout </button>
+            <CreateDisplay token={token} />
+            <Display token={token} />
 
           </div>
         </MDBCol>
       </MDBRow>
     </MDBContainer >
+    </>
   );
 }
 

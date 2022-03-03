@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Nav, Navbar, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarBrand } from 'reactstrap'
+import { Nav, Navbar, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarBrand, NavbarToggler, Collapse } from 'reactstrap'
 import Logout from './Logout';
 
 interface SitebarProps {
@@ -17,13 +17,16 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
   }
   render() { 
     return ( 
-      <Navbar>
+      <div>
+      <Navbar className='light'>
         <NavbarBrand>
           hellow from navbar
-        <NavItem> <Logout clearLocalStorage={this.props.clearLocalStorage} /> </NavItem> 
+        <Logout clearLocalStorage={this.props.clearLocalStorage} /> 
         </NavbarBrand>
+        <NavbarToggler />
+        <Collapse></Collapse>
       </Navbar>
-   
+      </div>
      );
   }
 }

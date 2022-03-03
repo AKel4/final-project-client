@@ -24,7 +24,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
      };
   }
 
-  handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  handleSubmit = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('button was clicked');
     const requestObject = {
@@ -73,17 +73,17 @@ class Signup extends React.Component<SignupProps, SignupState> {
             <FormGroup>
 
               <Label htmlFor='email' style={{fontFamily: 'Poppins'}}>Email :</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={(e:any)=> this.setState({email: e.target.value})} name="email" type='email' value={this.state.email} />
+              <Input style={{border: 'solid black 3px'}} onChange={(e)=> this.setState({email: e.target.value})} name="email" type='email' value={this.state.email} />
               </FormGroup>
 
               <FormGroup>
               <Label htmlFor='password' style={{fontFamily: 'Poppins'}} >Password :</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={(e:any)=> this.setState({password: e.target.value})} name='password' type='password'  value={this.state.password}/>
+              <Input style={{border: 'solid black 3px'}} onChange={(e)=> this.setState({password: e.target.value})} name='password' type='password' value={this.state.password}/>
               </FormGroup>
 
               <FormGroup>
               <Label htmlFor='admin' style={{fontFamily: 'Poppins'}} >House Leader :</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={(e:any)=> this.setState({admin: (e.target.value)})} name='admin' type='select' value={this.state.admin}>
+              <Input style={{border: 'solid black 3px'}} onChange={(e)=> this.setState({admin: (e.target.value)})} name='admin' type='select' value={this.state.admin}>
               <option value="true">House Leader</option>
               <option value="false">House Member</option>
               </Input>
@@ -91,7 +91,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
 
               <FormGroup>
               <Label htmlFor='houseCode' style={{fontFamily: 'Poppins'}} >Enter a unique house code:</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={(e:any)=> this.setState({houseCode: (e.target.value)})} name='houseCode' type='text'  value={String(this.state.houseCode)}/>
+              <Input style={{border: 'solid black 3px'}} onChange={(e)=> this.setState({houseCode: (e.target.value)})} name='houseCode' type='text'  value={String(this.state.houseCode)}/>
             </FormGroup>
             <Button type='submit'>Sign Up</Button>
           </Form>
