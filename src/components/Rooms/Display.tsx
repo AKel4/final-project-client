@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Col, Container, Row } from 'reactstrap';
+import CreateDisplay from './CreateDisplay';
+import RoomCreate from './RoomTable/RoomCreate';
 
 interface DisplayProps {
   token: string | null
@@ -12,7 +14,6 @@ interface DisplayState {
 }
  
 class Display extends React.Component<DisplayProps, DisplayState> {
-  roomArray: any;
   constructor(props: DisplayProps) {
     super(props);
     this.state = { rooms: []  };
@@ -49,25 +50,22 @@ render() {
   const roomMapper = () => {
     return this.state.rooms?.map((room: any, index: any) => {
       return (
-        <tr key={index}>
-          <th scope='row'></th>
-          <td>{room.room}</td>
-        </tr>
+        <h4>{room.room} </h4>
       )
     })
   }
 
   //!  this is where the existing rooms and chores will be displayed.
-
     return ( 
     <div>
-      <Container>
+      <Container className=''>
         <Row>
           <Col>
           {roomMapper()}
           </Col>
         </Row>
       </Container>
+      <CreateDisplay token={this.props.token} fetchRooms={this.fetchRooms}/>
     </div> 
       );
   }

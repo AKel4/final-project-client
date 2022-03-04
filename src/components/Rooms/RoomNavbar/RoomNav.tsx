@@ -3,14 +3,20 @@ import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/NavBar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
+import { NavLink } from 'react-bootstrap'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 
 import Logout from '../../Navbar/Logout';
+import Display from '../Display'
 
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { NavItem } from 'reactstrap'
+import About from '../../Home/AboutUs'
 
 
 interface RoomNavProps {
-  clearLocalStorage: () => void
+  clearLocalStorage: () => void,
+  token: string | null
 }
  
 interface RoomNavState {
@@ -24,26 +30,35 @@ class RoomNav extends React.Component<RoomNavProps, RoomNavState> {
   }
   render() { 
     return ( 
-    <div>
+  
+  <Router>
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
   <Container>
-  <Navbar.Brand href="#home">ADHD-Clean</Navbar.Brand>
+  <Navbar.Brand >ADHD-Clean</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
+   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="me-auto">
-      <Nav.Link href="#features">My Rooms</Nav.Link>
-      <Nav.Link href="#pricing">My Chores</Nav.Link>
+      <NavItem>
+      <NavLink> <Link to='/allrooms'> My Rooms</Link> </NavLink>
+      </NavItem>
+      <NavLink >My Chores</NavLink>
       <NavDropdown title="More" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">About Us</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Edit My Home</NavDropdown.Item>
+        <NavDropdown.Item ><Link to='/about'>About Us </Link> </NavDropdown.Item>
+        <NavDropdown.Item >Edit My Home</NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.3"><Logout clearLocalStorage={this.props.clearLocalStorage} /> </NavDropdown.Item>
+        <NavDropdown.Item> <Logout clearLocalStorage={this.props.clearLocalStorage} /> </NavDropdown.Item>
       </NavDropdown>
     </Nav>
     </Navbar.Collapse>
   </Container>
   </Navbar>
-    </div> );
+
+   {/* <Routes>
+      <Route path='/allrooms' element={<Display token={this.props.token} />} />
+   </Routes> */}
+
+  </Router>
+   );
   }
 }
  

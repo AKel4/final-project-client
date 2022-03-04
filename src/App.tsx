@@ -7,6 +7,7 @@ import './App.css';
 
 //* Component imports 
 import Auth from './components/Auth/Auth';
+import About from './components/Home/AboutUs';
 import Sitebar from './components/Navbar/Navbar';
 import CreateDisplay from './components/Rooms/CreateDisplay';
 import Display from './components/Rooms/Display';
@@ -44,7 +45,7 @@ const App = () => {
         {!token ? (
           <Sitebar clearLocalStorage={clearLocalStorage}/>
         ) : (
-          <RoomNav clearLocalStorage={clearLocalStorage} />
+          <RoomNav clearLocalStorage={clearLocalStorage} token={token} />
         )}
 
         <Container>
@@ -52,10 +53,12 @@ const App = () => {
             <Col sm={true}>
               
               {!token ? (
-                <Auth updateLocalStorage={updateLocalStorage} token={token}/>
+                <><Auth updateLocalStorage={updateLocalStorage} token={token} /> </>
               ) : (
-                <><Display token={token} /><CreateDisplay token={token} /></>
+                <Display token={token} />
               )}
+              
+              {/* <About /> */}
 
             </Col>
           </Row>

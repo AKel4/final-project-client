@@ -26,11 +26,11 @@ class Signup extends React.Component<SignupProps, SignupState> {
 
   handleSubmit = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('button was clicked');
+    console.log('create room button clicked');
     const requestObject = {
       email: this.state.email,
       password: this.state.password,
-      admin: Boolean(this.state.admin),
+      admin: this.state.admin == 'false' ? false : true,
       houseCode: Number(this.state.houseCode)
     }
 
