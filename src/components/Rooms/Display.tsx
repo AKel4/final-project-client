@@ -45,12 +45,16 @@ class Display extends React.Component<DisplayProps, DisplayState> {
 }
 
 
+
+
 render() { 
 
   const roomMapper = () => {
     return this.state.rooms?.map((room: any, index: any) => {
       return (
+        <>
         <h4>{room.room} </h4>
+        </>
       )
     })
   }

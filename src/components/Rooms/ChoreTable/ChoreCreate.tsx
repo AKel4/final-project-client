@@ -103,7 +103,7 @@ class ChoreCreate extends React.Component<ChoreCreateProps, ChoreCreateState> {
               <Input onChange={(e: any) => this.setState({time: e.target.value})} type='text' name='time' value={this.state.time}/>
 
             </FormGroup>
-            <Button style={{width: '80 vw'}} type='submit' >Add this room</Button>
+            <Button style={{width: '80 vw'}} type='submit' >Add this chore</Button>
             <Button onClick={this.handleClose}> Close </Button>
           </Form>
         </ModalBody>
