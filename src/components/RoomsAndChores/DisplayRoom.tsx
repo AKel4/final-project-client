@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Col, Container, Row } from 'reactstrap';
-import CreateDisplay from './CreateDisplay';
-import RoomCreate from './RoomTable/RoomCreate';
+import CreateDisplayRoom from './CreateDisplayRoom';
 
 interface DisplayProps {
   token: string | null
@@ -69,7 +68,7 @@ render() {
           </Col>
         </Row>
       </Container>
-      <CreateDisplay token={this.props.token} fetchRooms={this.fetchRooms}/>
+      <CreateDisplayRoom token={this.props.token} fetchRooms={this.fetchRooms}/>
     </div> 
       );
   }

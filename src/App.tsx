@@ -9,9 +9,9 @@ import './App.css';
 import Auth from './components/Auth/Auth';
 import About from './components/Home/AboutUs';
 import Sitebar from './components/Navbar/Navbar';
-import CreateDisplay from './components/Rooms/CreateDisplay';
-import Display from './components/Rooms/Display';
-import RoomNav from './components/Rooms/RoomNavbar/RoomNav';
+import CreateDisplay from './components/RoomsAndChores/CreateDisplayRoom';
+import Display from './components/RoomsAndChores/DisplayRoom';
+import RoomNav from './components/RoomsAndChores/UserNavbar/RoomNav';
 
 
 const App = () => {

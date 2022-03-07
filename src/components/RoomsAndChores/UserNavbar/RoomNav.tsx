@@ -7,7 +7,7 @@ import { NavLink } from 'react-bootstrap'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 
 import Logout from '../../Navbar/Logout';
-import Display from '../Display'
+import Display from '../DisplayRoom'
 
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { NavItem } from 'reactstrap'
