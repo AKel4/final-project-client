@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Button } from 'reactstrap';
+import { FormGroup } from 'react-bootstrap';
+import { Button, Form,  } from 'reactstrap';
+import RoomEdit from './RoomEdit';
 
 
 interface RoomTableProps {
@@ -8,6 +10,7 @@ interface RoomTableProps {
   fetchRooms: Function,
   updateOn: () => void,
   updateOff: () => void,
+  editRoom: Function
 }
  
 interface RoomTableState {
@@ -18,17 +21,18 @@ interface RoomTableState {
 }
  
 class RoomTable extends React.Component<RoomTableProps, RoomTableState> {
+  [x: string]: any;
   constructor(props: RoomTableProps) {
     super(props);
     this.state = { rooms: [], show: false, open: false };
   }
 
-  roomDelete =async (e:React.FormEvent<HTMLFormElement>) => {
+  roomDelete = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
     const requestObject = { rooms: this.state.rooms }
 
     try {
-      const res = await fetch('http://localhost:4000/room/:id', {
+      const res = await fetch(`http://localhost:4000/room/`+this.room.id, {
         method: 'DELETE',
         body: JSON.stringify(requestObject),
         headers: new Headers({
@@ -44,23 +48,42 @@ class RoomTable extends React.Component<RoomTableProps, RoomTableState> {
     }
   }
   
+  componentDidMount = () => {
+    this.roomDelete()
+ }
+
+  startUpdate = (room: React.MouseEventHandler<HTMLButtonElement>) => {
+
+    this.props.editRoom(room)
+
+    this.props.updateOn()
+  }
 
   render() { 
 
-    // const roomMapper = () => {
-    //   return this.state.rooms?.map((room: any, index: any) => {
-    //     return (
-    //       <>
-    //       <h4>{room.room}</h4>
-    //       <Button >Edit</Button>
-    //       </>
-    //     )
-    //   })
-    // }
+    const roomMapper = () => {
+      return this.state.rooms?.map((room: any, index: any) => {
+        return (
+          <Form key={index}>
+          <FormGroup>
+            <h4>{room.room}</h4>
+            <Button onClick={() => this.startUpdate(room)}>Edit</Button>
+            <Button onClick={() => this.roomDelete(room)} >Delete</Button>
+
+          </FormGroup>
+          </Form>
+          
+        )
+      })
+    }
 
     return (
        <div>putting edit room fetch here
 
+        {roomMapper()}
+
+
+         {/* <RoomEdit token={this.props.token} updateOn={this.props.updateOn} fetchRooms={this.props.fetchRooms} updateOff={this.props.updateOff} /> */}
        </div> 
 
        );
