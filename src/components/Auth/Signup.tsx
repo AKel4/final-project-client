@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Button, ButtonToggle, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 interface SignupProps {
-  updateLocalStorage: (newToken: string) => void 
+  updateLocalStorage: (newToken: string) => void,
+  token: string | null,
 }
  
 interface SignupState {

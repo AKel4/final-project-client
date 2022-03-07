@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Component } from 'react';
-import { FormGroup } from 'react-bootstrap';
-import { Button, Form,  } from 'reactstrap';
+
+
+import { Button, Form, FormGroup, Col, Container, Row } from 'reactstrap';
+import { IRoomGetAllResponse } from './room.getall.interface';
 import RoomEdit from './RoomEdit';
 
 
@@ -10,11 +11,12 @@ interface RoomTableProps {
   fetchRooms: Function,
   updateOn: () => void,
   updateOff: () => void,
-  editRoom: Function
+  editRoom: Function,
+  rooms: IRoomGetAllResponse[],
 }
  
 interface RoomTableState {
-  rooms: object[],
+  rooms: IRoomGetAllResponse[],
 
   show: boolean,
   open: boolean
@@ -27,12 +29,11 @@ class RoomTable extends React.Component<RoomTableProps, RoomTableState> {
     this.state = { rooms: [], show: false, open: false };
   }
 
-  roomDelete = async (e: React.MouseEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  roomDelete = async (room: IRoomGetAllResponse) => {
     const requestObject = { rooms: this.state.rooms }
 
     try {
-      const res = await fetch(`http://localhost:4000/room/`+this.room.id, {
+      const res = await fetch(`http://localhost:4000/room/`, {
         method: 'DELETE',
         body: JSON.stringify(requestObject),
         headers: new Headers({
@@ -48,43 +49,44 @@ class RoomTable extends React.Component<RoomTableProps, RoomTableState> {
     }
   }
   
-  componentDidMount = () => {
-    this.roomDelete()
- }
 
-  startUpdate = (room: React.MouseEventHandler<HTMLButtonElement>) => {
+
+  startUpdate = (room: IRoomGetAllResponse) => {
 
     this.props.editRoom(room)
 
     this.props.updateOn()
   }
 
+
+  // roomTableMapper = () => {
+  //   return ( 
+  //     this.state.rooms?.map((room, index) => 
+       
+  //       <FormGroup key={index}>
+  //         <h4>{room.room}</h4>
+  //         <Button onClick={() => this.startUpdate(room)}>Edit</Button>
+  //         <Button onClick={() => this.roomDelete(room)} >Delete</Button>
+
+  //       </FormGroup>
+        
+  //   ))
+  // }
+
+
   render() { 
 
-    const roomMapper = () => {
-      return this.state.rooms?.map((room: any, index: any) => {
-        return (
-          <Form key={index}>
-          <FormGroup>
-            <h4>{room.room}</h4>
-            <Button onClick={() => this.startUpdate(room)}>Edit</Button>
-            <Button onClick={() => this.roomDelete(room)} >Delete</Button>
-
-          </FormGroup>
-          </Form>
-          
-        )
-      })
-    }
-
     return (
-       <div>putting edit room fetch here
-
-        {roomMapper()}
-
-
-         {/* <RoomEdit token={this.props.token} updateOn={this.props.updateOn} fetchRooms={this.props.fetchRooms} updateOff={this.props.updateOff} /> */}
-       </div> 
+       <div>
+         <Container className=''>
+          <Form>
+          
+            {/* {this.roomTableMapper()} */}
+        
+          </Form>
+        </Container>
+       
+      </div> 
 
        );
   }

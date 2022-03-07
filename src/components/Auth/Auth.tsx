@@ -6,7 +6,7 @@ import Signup from './Signup';
 
 interface AuthProps {
   updateLocalStorage: (newToken: string) => void,
-  token: string | null
+  token: string | null,
 }
  
 interface AuthState {
@@ -30,8 +30,15 @@ class Auth extends React.Component<AuthProps, AuthState> {
 
       
       {this.state.isLoginVisible === true ? (
-      <><Login updateLocalStorage={this.props.updateLocalStorage} /> <br /> <Button onClick={this.handleToggle}>Not a user? Sign up!</Button></> ) : (
-      <><Signup updateLocalStorage={this.props.updateLocalStorage} /> <br /> <Button onClick={this.handleToggle}>Already a user? Log in!</Button></>)}
+      <>
+      <Login updateLocalStorage={this.props.updateLocalStorage} token={this.props.token} /> 
+      <br /> 
+      <Button onClick={this.handleToggle}>Not a user? Sign up!</Button>
+      </> ) : ( <>
+      <Signup updateLocalStorage={this.props.updateLocalStorage} token={this.props.token} /> 
+      <br /> 
+      <Button onClick={this.handleToggle}>Already a user? Log in!</Button>
+      </>)}
 
 
 

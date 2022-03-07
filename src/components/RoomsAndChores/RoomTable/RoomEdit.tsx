@@ -7,13 +7,15 @@ import { Label, Input } from 'reactstrap';
 import Modal from 'react-bootstrap/Modal';
 import ModalHeader from 'react-bootstrap/ModalHeader';
 import ModalBody from 'react-bootstrap/ModalBody';
+import { IRoomGetAllResponse } from './room.getall.interface';
 
 interface RoomEditProps {
   token: string | null,
+  postToUpdate: IRoomGetAllResponse
   fetchRooms: Function,
   updateOn: () => void,
   updateOff: () => void,
- 
+
 }
  
 interface RoomEditState {
@@ -26,7 +28,7 @@ interface RoomEditState {
 class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
   constructor(props: RoomEditProps) {
     super(props);
-    this.state = { room: '', show: false, open: false};
+    this.state = { room: this.props.postToUpdate.room, show: false, open: false};
   }
 
   roomUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,7 +36,7 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
     const requestObject = { room: this.state.room}
 
     try {
-      const res = await fetch('http://localhost:4000/room/:id',{
+      const res = await fetch(`http://localhost:4000/room/${this.props.postToUpdate.id}`,{
         method: 'PUT',
         body: JSON.stringify(requestObject),
         headers: new Headers({
@@ -61,7 +63,7 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
     return ( 
       <>
 
-    <Modal show={this.state.show} >
+    <Modal show={true} >
       <ModalHeader>
         <ModalBody>
           <Form onSubmit={this.roomUpdate} >
