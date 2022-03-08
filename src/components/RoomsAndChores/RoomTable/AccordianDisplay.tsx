@@ -11,6 +11,7 @@ interface AccordianDisplayProps {
   updateOff: () => void,
   postToUpdate:  {},
   editRoom: Function,
+  deleteRoom: Function,
   rooms: IRoomGetAllResponse[],
 }
  
@@ -30,11 +31,11 @@ class AccordianDisplay extends React.Component<AccordianDisplayProps, AccordianD
 
 
   startUpdate = (room: IRoomGetAllResponse) => {
-debugger
-    this.props.editRoom(room)
 
+    this.props.editRoom(room)
   
   }
+
 
 
   choreDisplay = (chores: IChores[]) => {

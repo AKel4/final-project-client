@@ -23,6 +23,17 @@ class DisplayChore extends React.Component<DisplayChoreProps, DisplayChoreState>
       postToUpdate: {},   
     };
   }
+
+  updateOn = () => {
+    this.setState({updateActive: true})
+  }
+
+  updateOff = () => {
+    this.setState({updateActive: false})
+  }
+
+
+
   render() { 
     return ( 
     <div>

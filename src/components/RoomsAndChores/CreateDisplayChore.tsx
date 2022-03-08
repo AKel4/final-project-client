@@ -37,7 +37,7 @@ class CreateDisplayChore extends React.Component<CreateDisplayChoreProps, Create
   render() { 
     return ( <div>create display chore
 
-        <ChoreCreate token={this.props.token} fetchRooms={this.props.fetchRooms} />
+     
 {/* 
         <ChoreCreate token={this.props.token} fetchRooms={this.props.fetchRooms} />
         {this.state.updateActive ? <RoomEdit token={this.props.token} updateOn={this.updateOn} fetchRooms={this.props.fetchRooms} updateOff={this.props.updateOff} /> : <></>} */}

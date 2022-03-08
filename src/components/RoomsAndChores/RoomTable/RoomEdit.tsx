@@ -15,7 +15,9 @@ interface RoomEditProps {
   fetchRooms: Function,
   updateOn: () => void,
   updateOff: () => void,
-
+  deleteRoom: Function,
+  rooms: IRoomGetAllResponse[]
+  // roomDelete: Function
 }
  
 interface RoomEditState {
@@ -59,6 +61,28 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
   handleShow = () => { this.setState({show: true})}
 
 
+
+
+  startDelete = async () => {
+
+    try {
+      const res = await fetch(`http://localhost:4000/room/${this.props.postToUpdate.id}`, {
+        method: 'DELETE',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': String(localStorage.getItem('token'))
+        }),
+      })
+      const data = await res.json()
+      console.log(data)
+      
+    } catch (error) {
+      console.log({error})
+    }
+    this.props.deleteRoom()
+    
+  }
+
   render() { 
     return ( 
       <>
@@ -72,8 +96,11 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
               <Input onChange={(e: any) => this.setState({room: e.target.value})} type='text' name='room' value={this.state.room}/>
 
             </FormGroup>
-            <Button type='submit' onClick={this.handleClose}> Update this room </Button>
           </Form>
+            <Button variant="outline-warning" size="sm" type='submit' onClick={this.handleClose}> Update this room </Button>
+
+            <Button variant="outline-danger" size="sm" type='submit'
+            onClick={() => this.startDelete()}>Delete this room </Button>
         </ModalBody>
       </ModalHeader>
     </Modal>
