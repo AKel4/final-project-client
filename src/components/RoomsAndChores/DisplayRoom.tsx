@@ -90,32 +90,17 @@ render() {
     return ( 
     <div>
     <Container className=''>
-      <Row>
-        <Col>
+     
         <AccordianDisplay token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} editRoom={this.editRoom} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} rooms={this.state.rooms} />
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
     
-        </Col>
 
-      {/* <Routes>
-        <Route path=''> */}
         <RoomCreate token={this.props.token} fetchRooms={this.fetchRooms}/>
-        {/* </Route> */}
+
         
         {this.state.updateActive == true ? <RoomEdit rooms={this.state.rooms} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} /> : null}
 
 
-
-      {/* </Routes> */}
-
-      </Row>
     </Container>
-  
-
     </div> 
       );
   }
