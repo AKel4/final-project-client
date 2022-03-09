@@ -1,12 +1,13 @@
 import * as React from 'react'
 
-import Button from 'react-bootstrap/Button';
+
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
-import { Label, Input } from 'reactstrap';
+import { Label, Input, Button } from 'reactstrap';
 import Modal from 'react-bootstrap/Modal';
 import ModalHeader from 'react-bootstrap/ModalHeader';
 import ModalBody from 'react-bootstrap/ModalBody';
+import CloseButton from 'react-bootstrap/esm/CloseButton';
 
 
 
@@ -67,10 +68,10 @@ class RoomCreate extends React.Component<RoomCreateProps, RoomCreateState> {
   render() { 
     return ( 
       <>
-  
-        <Button onClick={this.handleShow}>Add a room to your house!</Button>
-
+        <Button color="info" outline onClick={this.handleShow}> Add a room to your house! </Button>
+     
       <Modal show={this.state.show} >
+      <CloseButton style={{marginLeft: '90%'}} onClick={() => this.handleClose()} aria-label="Hide" />
         <ModalHeader>
           <ModalBody>
             <Form onSubmit={this.handleSubmit} >
@@ -79,8 +80,7 @@ class RoomCreate extends React.Component<RoomCreateProps, RoomCreateState> {
                 <Input onChange={(e: any) => this.setState({room: e.target.value})} type='text' name='room' value={this.state.room}/>
 
               </FormGroup>
-              <Button style={{width: '80 vw'}} type='submit' >Add this room</Button>
-              <Button onClick={this.handleClose}> Close </Button>
+              <Button color='info' style={{width: '80 vw'}} type='submit' >Add this room</Button>
             </Form>
           </ModalBody>
         </ModalHeader>

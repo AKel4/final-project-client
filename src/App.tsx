@@ -46,7 +46,7 @@ const App = () => {
           <RoomNav clearLocalStorage={clearLocalStorage} token={token} />
         )}
 
-        <Container>
+        <Container style={{ backgroundColor: 'lightgray', paddingBottom: '35vh'}}>
           <Row>
             <Col sm={true}>
               
@@ -55,13 +55,13 @@ const App = () => {
               ) : (
                 <>
                 <Display token={token} />
-                {/* <CreateDisplayRoom token={token} fetchRooms={this.props.fetchRooms} /> */}
+               
                 </>
               )}
+            </Col>
               
               {/* <About /> */}
 
-            </Col>
           </Row>
         </Container>
 

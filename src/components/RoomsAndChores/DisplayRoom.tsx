@@ -9,11 +9,12 @@ import RoomEdit from './RoomTable/RoomEdit';
 
 interface DisplayProps {
   token: string | null,
-  
 }
  
 interface DisplayState {
   rooms: IRoomGetAllResponse[],
+  
+  show: boolean,
 
   updateActive: boolean,
   postToUpdate: IRoomGetAllResponse
@@ -24,12 +25,13 @@ class Display extends React.Component<DisplayProps, DisplayState> {
     super(props);
     this.state = { 
       rooms: [], 
-
+      show: false,
       updateActive: false,
-      postToUpdate: {} as IRoomGetAllResponse  , };
+      postToUpdate: {} as IRoomGetAllResponse, 
+    };
   }
 
-  fetchRooms = async () => {
+fetchRooms = async () => {
     try {
     const res = await fetch('http://localhost:4000/room/allrooms', {
       method: 'GET',
@@ -43,8 +45,6 @@ class Display extends React.Component<DisplayProps, DisplayState> {
     
     console.log(data)
 
-    console.log(this.state.rooms)
-
     } catch (error) {
       console.log({error})
     }
@@ -53,10 +53,17 @@ class Display extends React.Component<DisplayProps, DisplayState> {
  componentDidMount = () => {
    this.fetchRooms()
 }
+// ?End of fetchRooms()
+
+handleClose = () => { this.setState({show: false})}
+handleShow = () => { this.setState({show: true})}
+
+
 
 editRoom = (rowInformation: IRoomGetAllResponse) => {
-this.setState({postToUpdate: rowInformation})
-this.updateOn()
+
+  this.setState({postToUpdate: rowInformation})
+  this.updateOn()
 }
 
 deleteRoom = () => {
@@ -68,6 +75,7 @@ deleteRoom = () => {
 
 updateOn = () => {
   this.setState({updateActive: true})
+
 }
 
 updateOff = () => {
@@ -78,13 +86,13 @@ updateOff = () => {
 render() { 
 
 
-  //!  this is where the existing rooms and chores will be displayed.
+
     return ( 
     <div>
     <Container className=''>
       <Row>
         <Col>
-        <AccordianDisplay token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} editRoom={this.editRoom} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} rooms={this.state.rooms}/>
+        <AccordianDisplay token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} editRoom={this.editRoom} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} rooms={this.state.rooms} />
         </Col>
       </Row>
 

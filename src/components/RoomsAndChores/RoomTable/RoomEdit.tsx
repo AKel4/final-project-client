@@ -8,6 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 import ModalHeader from 'react-bootstrap/ModalHeader';
 import ModalBody from 'react-bootstrap/ModalBody';
 import { IRoomGetAllResponse } from './room.getall.interface';
+import { CloseButton } from 'react-bootstrap';
 
 interface RoomEditProps {
   token: string | null,
@@ -34,6 +35,8 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
   }
 
   roomUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log('update button was clicked')
+
     e.preventDefault();
     const requestObject = { room: this.state.room}
 
@@ -80,14 +83,18 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
       console.log({error})
     }
     this.props.deleteRoom()
-    
   }
+
+
+ 
+
 
   render() { 
     return ( 
       <>
 
     <Modal show={true} >
+    {/* <CloseButton onClick={() => this.handleClose()} aria-label="Hide" /> */}
       <ModalHeader>
         <ModalBody>
           <Form onSubmit={this.roomUpdate} >
@@ -96,11 +103,11 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
               <Input onChange={(e: any) => this.setState({room: e.target.value})} type='text' name='room' value={this.state.room}/>
 
             </FormGroup>
-          </Form>
-            <Button variant="outline-warning" size="sm" type='submit' onClick={this.handleClose}> Update this room </Button>
+            <Button variant="outline-warning" size="sm" type='submit'> Update this room </Button>
 
-            <Button variant="outline-danger" size="sm" type='submit'
+            <Button variant="outline-danger" size="sm"
             onClick={() => this.startDelete()}>Delete this room </Button>
+          </Form>
         </ModalBody>
       </ModalHeader>
     </Modal>
