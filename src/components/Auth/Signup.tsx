@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Alert from 'react-bootstrap/esm/Alert';
 import { Button, ButtonToggle, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 interface SignupProps {
@@ -10,7 +11,8 @@ interface SignupState {
   email: string,
   password: string,
   admin: string,
-  houseCode: string
+  houseCode: string,
+  show: boolean,
 }
  
 class Signup extends React.Component<SignupProps, SignupState> {
@@ -22,12 +24,13 @@ class Signup extends React.Component<SignupProps, SignupState> {
       password: '',
       admin: "false",
       houseCode: '',
+
+      show: false,
      };
   }
 
   handleSubmit = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('create room button clicked');
     const requestObject = {
       email: this.state.email,
       password: this.state.password,
@@ -46,22 +49,35 @@ class Signup extends React.Component<SignupProps, SignupState> {
         const data = await res.json()
       
         this.props.updateLocalStorage(data.sessionToken)
-       console.log(data)
-
+      //  console.log(data.message)
+       
+      
+      this.setState({
+        email: '',
+        password: '',
+        admin: "false",
+        houseCode: ''
+      })
+      
+      
+    } catch (error) {
+      console.log({error})
         
-          this.setState({
-            email: '',
-            password: '',
-            admin: "false",
-            houseCode: ''
-          })
-          
-        
-      } catch (error) {
-        console.log({error})
       }
+    }
     
-    };
+      
+      
+  //    alert = () =>{
+  //       if (this.props.token == 'undefined') {
+  //       return (
+  //     <Alert variant="danger" onClose={() => this.setState({show: false})} dismissible>
+  //       <Alert.Heading>{Error}</Alert.Heading>
+        
+  //     </Alert>
+  //       )};
+  // }
+
 
 
 

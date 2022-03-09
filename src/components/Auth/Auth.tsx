@@ -25,10 +25,9 @@ class Auth extends React.Component<AuthProps, AuthState> {
 
   render() { 
     
-    return ( <div>
-      <h3>hello from auth</h3>
-
-      
+    return ( 
+    <div>
+    
       {this.state.isLoginVisible === true ? (
       <>
       <Login updateLocalStorage={this.props.updateLocalStorage} token={this.props.token} /> 
@@ -39,8 +38,6 @@ class Auth extends React.Component<AuthProps, AuthState> {
       <br /> 
       <Button onClick={this.handleToggle}>Already a user? Log in!</Button>
       </>)}
-
-
 
     </div> );
   }

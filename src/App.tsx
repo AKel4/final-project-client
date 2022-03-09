@@ -8,9 +8,12 @@ import './App.css';
 //* Component imports 
 import Auth from './components/Auth/Auth';
 import About from './components/Home/AboutUs';
-import Sitebar from './components/Navbar/Navbar';
 import Display from './components/RoomsAndChores/DisplayRoom';
-import RoomNav from './components/RoomsAndChores/UserNavbar/RoomNav';
+import UserNav from './components/RoomsAndChores/UserNavbar/UserNav';
+import AuthNav from './components/Auth/Navbar/Navbar';
+import { Route, Routes } from 'react-router-dom';
+import AuthMain from './components/Auth/Navbar/AuthMain';
+import Main from './components/RoomsAndChores/UserNavbar/Main';
 
 
 const App = () => {
@@ -36,39 +39,21 @@ const App = () => {
     setToken('')
   }
 
+  const protectedViews = () => {
+    return (token === localStorage.getItem('token') ? 
+    <Main clearLocalStorage={clearLocalStorage} token={token as string} />
+    :  <AuthMain updateLocalStorage={updateLocalStorage} clearLocalStorage={clearLocalStorage} token={token as string}/> )
+  }
 
-  return (
+
+return (
     <>
-
-        {!token ? (
-          <Sitebar clearLocalStorage={clearLocalStorage}/>
-        ) : (
-          <RoomNav clearLocalStorage={clearLocalStorage} token={token} />
-        )}
-
-        <Container style={{ backgroundColor: 'lightgray', paddingBottom: '35vh'}}>
-          <Row>
-            <Col sm={true}>
-              
-              {!token ? (
-                <><Auth updateLocalStorage={updateLocalStorage} token={token} /> </>
-              ) : (
-                <>
-                <Display token={token} />
-               
-                </>
-              )}
-            </Col>
-              
-              {/* <About /> */}
-
-          </Row>
-        </Container>
-
-
-
+  <UserNav clearLocalStorage={clearLocalStorage} token={token as string} />
+  
+  {protectedViews()}
     </>
   );
-}
+};
+
 
 export default App;
