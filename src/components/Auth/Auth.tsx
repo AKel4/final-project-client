@@ -26,7 +26,7 @@ class Auth extends React.Component<AuthProps, AuthState> {
   render() { 
     
     return ( 
-    <div>
+    <div style={{backgroundColor: '#E0F0D6', paddingBottom: '56vh'}}>
     
       {this.state.isLoginVisible === true ? (
       <>

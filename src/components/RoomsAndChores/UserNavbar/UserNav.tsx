@@ -42,25 +42,27 @@ class UserNav extends React.Component<UserNavProps, UserNavState> {
 
       {!this.props.token ? (
         <>
- <NavItem>
- <NavLink> <Link to='/'> SignUp/Login </Link> </NavLink>
-</NavItem>
+        <NavItem>
+          <NavLink> <Link to='/'> SignUp/Login </Link> </NavLink>
+        </NavItem>
 
- <NavItem>
- <NavLink> <Link to='/about'> About Us </Link> </NavLink>
-</NavItem>
-  </>
+        <NavItem>
+          <NavLink> <Link to='/about'> About Us </Link> </NavLink>
+        </NavItem>
+        </>
       ) : (
-<>
-      <NavItem>
-        <NavLink> <Link to='/generate'> Generate Chore </Link> </NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink> <Link to='/'> My House</Link> </NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink> <Link to='/edit'> Edit My House</Link> </NavLink>
-      </NavItem>
+        <>
+        <NavItem>
+          <NavLink> <Link to='/generate'> Generate Chore </Link> </NavLink>
+        </NavItem>
+
+        <NavItem>
+          <NavLink> <Link to='/'> My House</Link> </NavLink>
+        </NavItem>
+
+        <NavItem>
+          <NavLink> <Link to='/edit'> Edit My House</Link> </NavLink>
+        </NavItem>
 
       <NavDropdown title="More" id="collasible-nav-dropdown">
 
@@ -78,8 +80,6 @@ class UserNav extends React.Component<UserNavProps, UserNavState> {
 </>
 
       )}
-     
-
      
     </Nav>
     </Navbar.Collapse>
