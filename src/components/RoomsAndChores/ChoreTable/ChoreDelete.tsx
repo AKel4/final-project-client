@@ -1,8 +1,10 @@
 import React from 'react'
 import Badge from 'react-bootstrap/esm/Badge';
+import { IChores } from '../RoomTable/room.getall.interface';
 
 interface ChoreDeleteProps {
-  
+  chore: IChores,
+  fetchRooms: Function,
 }
  
 interface ChoreDeleteState {
@@ -16,9 +18,9 @@ class ChoreDelete extends React.Component<ChoreDeleteProps, ChoreDeleteState> {
   }
 
   deleteChore = async () => {
-    // console.log(this.state.postToUpdate.id)
+
         try {
-          const res = await fetch(`http://localhost:4000/chore/`, {
+          const res = await fetch(`http://localhost:4000/chore/${this.props.chore.id}`, {
             method: 'DELETE',
             headers: new Headers({
               'Content-Type': 'application/json',
@@ -31,14 +33,16 @@ class ChoreDelete extends React.Component<ChoreDeleteProps, ChoreDeleteState> {
         } catch (error) {
           console.log({error})
         }
+        this.props.fetchRooms();
       }
 
 
 
   render() { 
-    return ( <div>
-      <Badge pill bg="danger" onClick={() => this.deleteChore()}>Delete</Badge>
-    </div> );
+    return ( 
+    <>
+      <Badge pill bg="danger" onClick={this.deleteChore}>Delete</Badge>
+    </> );
   }
 }
  

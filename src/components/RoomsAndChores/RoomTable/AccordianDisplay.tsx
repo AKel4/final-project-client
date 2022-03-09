@@ -62,7 +62,7 @@ class AccordianDisplay extends React.Component<AccordianDisplayProps, AccordianD
       {chore.time}mins
     </Badge>
       <ChoreEdit chore={chore} fetchRooms={this.props.fetchRooms} />
-      <ChoreDelete />
+      <ChoreDelete chore={chore} fetchRooms={this.props.fetchRooms} />
     
   </ListGroup.Item>
 </ListGroup>
