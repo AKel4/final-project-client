@@ -82,7 +82,7 @@ class AccordianEdit extends React.Component<AccordianEditProps, AccordianEditSta
       <Accordion.Body>
       {this.choreDisplay(room.chores)}
 
-      <DisplayChore token={this.props.token} fetchRooms={this.props.fetchRooms} updateOn={this.props.updateOn} updateOff={this.props.updateOff} room={room} />
+      <ChoreCreate token={this.props.token} fetchRooms={this.props.fetchRooms} room={room}/>
      
 
       </Accordion.Body>
@@ -95,7 +95,7 @@ class AccordianEdit extends React.Component<AccordianEditProps, AccordianEditSta
 
     return ( 
     <>
-    <h3></h3>
+    <h3>this WILL HAVE buttons</h3>
     <Accordion>
      {this.props.rooms.length > 0 ? this.roomDisplay() : null}
     </Accordion> 

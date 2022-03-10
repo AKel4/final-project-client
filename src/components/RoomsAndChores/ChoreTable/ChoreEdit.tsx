@@ -31,9 +31,9 @@ class ChoreEdit extends React.Component<ChoreEditProps, ChoreEditState> {
     super(props);
     this.state = { 
       id: this.props.chore.id,
-      chore: '',
-      desc: '',
-      time: '',
+      chore: this.props.chore.chore,
+      desc: this.props.chore.desc,
+      time: String(this.props.chore.time),
       // roomId: '',
       userId: '',
       houseCode: '',

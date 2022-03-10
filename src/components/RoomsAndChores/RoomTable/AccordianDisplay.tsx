@@ -22,7 +22,6 @@ interface AccordianDisplayProps {
 }
  
 interface AccordianDisplayState {
-  
 }
  
 class AccordianDisplay extends React.Component<AccordianDisplayProps, AccordianDisplayState> {
@@ -30,18 +29,15 @@ class AccordianDisplay extends React.Component<AccordianDisplayProps, AccordianD
   showButtons = true;
   constructor(props: AccordianDisplayProps) {
     super(props);
-    // this.state = { :  };
+    // this.state = {rooms: [] };
   }
 
-
-
+  
   startUpdate = (room: IRoomGetAllResponse) => {
-
+    
     this.props.editRoom(room)
     
   }
-
-
 
 
 //? start of chore display--------------------------------------------------
@@ -82,7 +78,7 @@ class AccordianDisplay extends React.Component<AccordianDisplayProps, AccordianD
       <Accordion.Body>
       {this.choreDisplay(room.chores)}
 
-      <DisplayChore token={this.props.token} fetchRooms={this.props.fetchRooms} updateOn={this.props.updateOn} updateOff={this.props.updateOff} room={room} />
+      <ChoreCreate token={this.props.token} fetchRooms={this.props.fetchRooms} room={room}/>
      
 
       </Accordion.Body>
@@ -94,12 +90,12 @@ class AccordianDisplay extends React.Component<AccordianDisplayProps, AccordianD
   render() { 
 
     return ( 
-    <>
-    <h3></h3>
+    <div>
+    <h3>this will be without buttons</h3>
     <Accordion>
      {this.props.rooms.length > 0 ? this.roomDisplay() : null}
     </Accordion> 
-    </>
+    </div>
     );
   }
 }

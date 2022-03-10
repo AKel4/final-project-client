@@ -29,11 +29,14 @@ class UserNav extends React.Component<UserNavProps, UserNavState> {
     super(props);
     this.state = {  };
   }
+
+
+
   render() { 
     return ( 
   
 
-  <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar collapseOnSelect expand="lg" variant='light' style={{backgroundColor: '#E0F0D6', color: 'white'}}>
   <Navbar.Brand >ADHD-Clean</Navbar.Brand>
 
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />

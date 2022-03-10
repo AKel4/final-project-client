@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
+import background from '../../assets/background.png'
 
 import { List } from 'reactstrap';
 
@@ -18,7 +19,7 @@ class About extends React.Component<AboutProps, AboutState> {
   }
   render() { 
     return ( 
-    <div >
+    <div style={{backgroundImage: `url(${background})`}} >
         <h3 style={{backgroundColor: '#168291', color: 'white', marginBottom: '0', padding: '0 .5em 1em .5em', borderBottom: 'solid 1px black'}}>Disorganized and overwhelmed? You're not alone.</h3>
       
         <div style={{backgroundColor: '#1CA5B8', marginBottom: '0', borderBottom: 'solid 1px black', padding: '0 .5em 1em .5em'}}>
@@ -36,12 +37,12 @@ class About extends React.Component<AboutProps, AboutState> {
           </ul>
         </List>
       </div>
-        <div style={{backgroundColor: '#E0F0D6', padding: '0 .5em 1em .5em'}}>
+        <div style={{backgroundImage: `url(${background})`, padding: '0 .5em 1em .5em'}}>
         <p>When I was a kid I remember my mom had written all of the household tasks on popcicle sticks and put them in a jar. She would pull out one at a time, and then complete that task before moving on to the next. When she had pulled all of the sticks and completed all the tasks, back they would go in the jar for next time.</p>
 
-        <div className='explanation' style={{backgroundColor: '#E0F0D6'}}>
-        <p>That's where this idea was born! If I can turn daily tasks in to interesting, new and challenging, with a sense of urgency to it; Then maybe it can make peoples' lives better. There is a set up process to this where you add the rooms of your house and add each chore that belongs to each room. You give each  </p>
-        <List>
+        <div className='guide'>
+        <p>That's where this idea was born! If I can turn daily tasks in to interesting, new and challenging, with a sense of urgency to it; Then maybe it can make peoples' lives easier.<strong>The steps to get started are outlined below: </strong> </p>
+        <List style={{fontWeight: 'bold'}}>
           <ol>
           <li>Add all of your rooms to your house</li>
           <li>Add each chore to the room they belong in</li>

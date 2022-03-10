@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
-import { Route, Routes } from 'react-router-dom';
-import { Col, Container, Row } from 'reactstrap';
+import React from 'react'
+
+import {Container} from 'reactstrap';
+import background from '../../assets/background.png'
+
 import AccordianDisplay from './RoomTable/AccordianDisplay';
+import AccordianEdit from './RoomTable/AccordianEdit';
 import { IRoomGetAllResponse } from './RoomTable/room.getall.interface';
 import RoomCreate from './RoomTable/RoomCreate';
 import RoomEdit from './RoomTable/RoomEdit';
@@ -9,6 +12,7 @@ import RoomEdit from './RoomTable/RoomEdit';
 
 interface DisplayProps {
   token: string | null,
+  path: string
 }
  
 interface DisplayState {
@@ -30,10 +34,10 @@ class Display extends React.Component<DisplayProps, DisplayState> {
       postToUpdate: {} as IRoomGetAllResponse, 
     };
   }
-
+// ! start of fetchRooms()--------------------------------------
 fetchRooms = async () => {
     try {
-    const res = await fetch('http://localhost:4000/room/allrooms', {
+    const res = await fetch('http://localhost:4000/room/myrooms', {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -53,7 +57,8 @@ fetchRooms = async () => {
  componentDidMount = () => {
    this.fetchRooms()
 }
-// ?End of fetchRooms()
+// ?End of fetchRooms()--------------------------------------
+
 
 handleClose = () => { this.setState({show: false})}
 handleShow = () => { this.setState({show: true})}
@@ -83,23 +88,27 @@ updateOff = () => {
 }
 
 
+
+
 render() { 
 
-
-
     return ( 
-    <div>
-    <Container className=''>
+    <div style={{backgroundImage: `url(${background})`, paddingBottom: '20vh', height: '844px'}}>
+
+    <Container >
      
-        <AccordianDisplay token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} editRoom={this.editRoom} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} rooms={this.state.rooms} />
+     {this.props.path === '/' ? (
+       <AccordianEdit token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} editRoom={this.editRoom} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} rooms={this.state.rooms} />
+     ) : (
+       <>
+      <AccordianDisplay token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} editRoom={this.editRoom} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} rooms={this.state.rooms} />
     
+      <RoomCreate token={this.props.token} fetchRooms={this.fetchRooms}/>
 
-        <RoomCreate token={this.props.token} fetchRooms={this.fetchRooms}/>
-
+      {this.state.updateActive == true ? <RoomEdit rooms={this.state.rooms} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} /> : null}
+      </>
+     )}
         
-        {this.state.updateActive == true ? <RoomEdit rooms={this.state.rooms} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} /> : null}
-
-
     </Container>
     </div> 
       );

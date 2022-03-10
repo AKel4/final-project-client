@@ -10,6 +10,7 @@ import AuthNav from '../../Auth/Navbar/Navbar';
 interface MainProps {
   clearLocalStorage: (token:string) => void
   token: string
+
 }
  
 interface MainState {
@@ -28,9 +29,9 @@ class Main extends React.Component<MainProps, MainState> {
 
                     <Route path="/generate" element={ <Generator /> } />
 
-                    <Route path="/" element={ <Display token={this.props.token} /> } />
+                    <Route path="/" element={ <Display path={'/edit'} token={this.props.token} /> } />
 
-                    <Route path="/edit" element={ <Display token={this.props.token} /> } />
+                    <Route path="/edit" element={ <Display path={'/edit'} token={this.props.token} /> } />
 
                     <Route  path="/about" element={ <About /> } />
 
