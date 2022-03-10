@@ -6,7 +6,7 @@ import { Badge } from 'react-bootstrap';
 import ChoreCreate from '../ChoreTable/ChoreCreate';
 import ChoreDelete from '../ChoreTable/ChoreDelete';
 import ChoreEdit from '../ChoreTable/ChoreEdit';
-import DisplayChore from '../DisplayChore';
+import DisplayChore from '../DisplayGenerator';
 import { IChores, IRoomGetAllResponse } from './room.getall.interface';
 
 interface AccordianDisplayProps {
@@ -92,7 +92,7 @@ class AccordianDisplay extends React.Component<AccordianDisplayProps, AccordianD
     return ( 
     <div>
     <h3>this will be without buttons</h3>
-    <Accordion>
+    <Accordion style={{fontFamily: 'monospace'}}>
      {this.props.rooms.length > 0 ? this.roomDisplay() : null}
     </Accordion> 
     </div>

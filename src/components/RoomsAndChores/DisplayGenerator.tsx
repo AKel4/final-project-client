@@ -3,20 +3,19 @@ import Generator from '../RandomGenerator/Generator';
 import ChoreCreate from './ChoreTable/ChoreCreate';
 import { IChores, IRoomGetAllResponse } from './RoomTable/room.getall.interface';
 
-interface DisplayChoreProps {
+interface DisplayGeneratorProps {
   token: string | null
-  fetchRooms: Function
 
 }
  
-interface DisplayChoreState {
+interface DisplayGeneratorState {
   rooms: IRoomGetAllResponse[],
   chores: IChores[],
 }
 
 
-class DisplayChore extends React.Component<DisplayChoreProps, DisplayChoreState> {
-  constructor(props: DisplayChoreProps) {
+class DisplayGenerator extends React.Component<DisplayGeneratorProps, DisplayGeneratorState> {
+  constructor(props: DisplayGeneratorProps) {
     super(props);
     this.state = { 
     rooms: [],
@@ -34,8 +33,7 @@ class DisplayChore extends React.Component<DisplayChoreProps, DisplayChoreState>
       }),
     })
     const data = await res.json()
-    this.setState({ rooms: data})
-    
+    this.setState({ rooms: data, chores: data})
     console.log(data)
 
     } catch (error) {
@@ -43,14 +41,18 @@ class DisplayChore extends React.Component<DisplayChoreProps, DisplayChoreState>
     }
 }
 
+componentDidMount = () => {
+  this.fetchForRandom()
+}
+
   render() { 
   
     return ( 
     <div>
-      <Generator fetchForRandom={this.fetchForRandom} />
+      <Generator fetchForRandom={this.fetchForRandom} rooms={this.state.rooms} chores={this.state.chores} />
   
     </div> );
   }
 }
  
-export default DisplayChore;
+export default DisplayGenerator;

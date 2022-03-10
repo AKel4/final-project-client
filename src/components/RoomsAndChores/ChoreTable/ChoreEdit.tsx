@@ -8,6 +8,7 @@ import ModalHeader from 'react-bootstrap/ModalHeader';
 import ModalBody from 'react-bootstrap/ModalBody';
 import { IChores, IRoomGetAllResponse } from '../RoomTable/room.getall.interface';
 import Badge from 'react-bootstrap/esm/Badge';
+import CloseButton from 'react-bootstrap/esm/CloseButton';
 
 interface ChoreEditProps {
   chore: IChores,
@@ -80,7 +81,8 @@ choreUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
       <>
       <Badge pill bg="warning" text='dark' onClick={this.handleEditShow}>Edit</Badge>
 
-      <Modal show={this.state.show} >
+      <Modal show={this.state.show} style={{fontFamily: 'monospace'}}>
+      <CloseButton style={{marginLeft: '90%'}} onClick={() => this.handleEditClose()} aria-label="Hide" />
         <ModalHeader>
           <ModalBody>
             <Form onSubmit={this.choreUpdate} >

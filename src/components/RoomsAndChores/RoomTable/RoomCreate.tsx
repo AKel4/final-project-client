@@ -68,10 +68,10 @@ class RoomCreate extends React.Component<RoomCreateProps, RoomCreateState> {
   render() { 
     return ( 
       <>
-        <Button color="warning" size='lg' style={{marginLeft: '12vw', marginTop: '3vh'}} onClick={this.handleShow}> Add a room to your house! </Button>
+        <Button color="warning" size='lg' style={{marginLeft: '8vw', marginTop: '3vh', fontFamily: 'monospace'}} onClick={this.handleShow}> Add a room to your house! </Button>
      
-      <Modal show={this.state.show} >
-      <CloseButton style={{marginLeft: '90%'}} onClick={() => this.handleClose()} aria-label="Hide" />
+      <Modal show={this.state.show} style={{fontFamily: 'monospace'}} >
+      <CloseButton style={{marginLeft: '90%', fontFamily: 'monospace'}} onClick={() => this.handleClose()} aria-label="Hide" />
         <ModalHeader>
           <ModalBody>
             <Form onSubmit={this.handleSubmit} >

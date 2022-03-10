@@ -6,7 +6,7 @@ import { Badge } from 'react-bootstrap';
 import ChoreCreate from '../ChoreTable/ChoreCreate';
 import ChoreDelete from '../ChoreTable/ChoreDelete';
 import ChoreEdit from '../ChoreTable/ChoreEdit';
-import DisplayChore from '../DisplayChore';
+import DisplayChore from '../DisplayGenerator';
 import { IChores, IRoomGetAllResponse } from './room.getall.interface';
 
 interface AccordianEditProps {

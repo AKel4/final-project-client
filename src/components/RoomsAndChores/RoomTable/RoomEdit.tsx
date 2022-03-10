@@ -93,7 +93,7 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
     return ( 
       <>
 
-    <Modal show={true} >
+    <Modal show={true} style={{fontFamily: 'monospace'}} >
     {/* <CloseButton onClick={() => this.handleClose()} aria-label="Hide" /> */}
       <ModalHeader>
         <ModalBody>

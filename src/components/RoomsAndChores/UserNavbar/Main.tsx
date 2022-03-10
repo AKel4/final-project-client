@@ -6,6 +6,8 @@ import Sitebar from '../../Auth/Navbar/Navbar';
 import Generator from '../../RandomGenerator/Generator';
 import Display from '../DisplayRoom';
 import AuthNav from '../../Auth/Navbar/Navbar';
+import DisplayChore from '../DisplayGenerator';
+import DisplayGenerator from '../DisplayGenerator';
 
 interface MainProps {
   clearLocalStorage: (token:string) => void
@@ -27,7 +29,7 @@ class Main extends React.Component<MainProps, MainState> {
       <React.Fragment>
                 <Routes>
 
-                    <Route path="/generate" element={ <Generator /> } />
+                    <Route path="/generate" element={ <DisplayGenerator token={this.props.token} /> } />
 
                     <Route path="/" element={ <Display path={'/edit'} token={this.props.token} /> } />
 

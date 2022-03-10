@@ -5,7 +5,9 @@ import { IChores, IRoomGetAllResponse } from '../RoomsAndChores/RoomTable/room.g
 
 
 interface GeneratorProps {
-  fetchForRandom: Function
+  fetchForRandom: Function,
+  rooms: IRoomGetAllResponse[],
+  chores: IChores[],
 }
  
 interface GeneratorState {
@@ -19,55 +21,35 @@ class Generator extends React.Component<GeneratorProps, GeneratorState> {
   }
 
 
-randonRooms = (rooms: IRoomGetAllResponse[]) => {
+generateRooms = () => {
 
   return (
-    rooms.map((room, index) => 
+    this.props.rooms.map((room, index) => 
 
-    <DropdownButton
+    <Dropdown.Item > {room.room} </Dropdown.Item>
+    )
+  )
+}
+
+
+
+  render() { 
+
+    return ( 
+    <div style={{backgroundImage: `url(${background})`, paddingBottom: '47vh', height: '844px'}}>
+
+      <div style={{paddingTop: '5vh'}}>
+      <DropdownButton
     id="dropdown-button-dark-example2"
     variant="secondary"
     menuVariant="dark"
     title="Choose a room"
     className="mt-2"
-    key={index}
     >
-    <Dropdown.Item > {room.room} </Dropdown.Item>
-  </DropdownButton>
-    )
-  )
-}
-
-randomChores = (chores: IChores[]) => {
-  return (
-    chores.map((chore, index) => 
-
-    <DropdownButton
-    id="dropdown-button-dark-example2"
-    variant="secondary"
-    menuVariant="dark"
-    title="Choose your time limit"
-    className="mt-2"
-    key={index}
-    >
-    <Dropdown.Item > {chore.time} </Dropdown.Item>
-  </DropdownButton>
-    )
-  )
-}
-
-
-
-
-  render() { 
-    return ( 
-    <div style={{backgroundImage: `url(${background})`, paddingBottom: '47vh'}}>
-      {/* <div>
-        {this.randonRooms()}
+    {this.generateRooms()}
+    </DropdownButton>
       </div>
-      <div>
-        {this.randomChores()}
-      </div> */}
+
     </div> );
   }
 }

@@ -105,7 +105,7 @@ class ChoreCreate extends React.Component<ChoreCreateProps, ChoreCreateState> {
       <hr />
       <Badge pill bg="primary" onClick={this.handleShow}>Add Chore</Badge>
 
-    <Modal show={this.state.show} >
+    <Modal show={this.state.show} style={{fontFamily: 'monospace'}}>
     <CloseButton style={{marginLeft: '90%'}} onClick={() => this.handleClose()} aria-label="Hide" />
       <ModalHeader>
         <ModalBody>
