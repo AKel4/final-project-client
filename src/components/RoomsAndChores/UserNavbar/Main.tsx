@@ -1,13 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 import About from '../../Home/AboutUs';
-
-import Sitebar from '../../Auth/Navbar/Navbar';
-import Generator from '../../RandomGenerator/Generator';
-import Display from '../DisplayRoom';
-import AuthNav from '../../Auth/Navbar/Navbar';
-import DisplayChore from '../DisplayGenerator';
+import Display from '../DisplayHouse'
 import DisplayGenerator from '../DisplayGenerator';
+import DisplayEdit from '../DisplayHouseEdit';
 
 interface MainProps {
   clearLocalStorage: (token:string) => void
@@ -31,9 +27,9 @@ class Main extends React.Component<MainProps, MainState> {
 
                     <Route path="/generate" element={ <DisplayGenerator token={this.props.token} /> } />
 
-                    <Route path="/" element={ <Display path={'/edit'} token={this.props.token} /> } />
+                    <Route path="/" element={ <Display token={this.props.token} /> } />
 
-                    <Route path="/edit" element={ <Display path={'/edit'} token={this.props.token} /> } />
+                    <Route path="/edit" element={ <DisplayEdit token={this.props.token} /> } />
 
                     <Route  path="/about" element={ <About /> } />
 

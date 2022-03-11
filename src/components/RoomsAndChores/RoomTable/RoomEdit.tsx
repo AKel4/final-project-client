@@ -18,23 +18,24 @@ interface RoomEditProps {
   updateOff: () => void,
   deleteRoom: Function,
   rooms: IRoomGetAllResponse[]
-  // roomDelete: Function
+  show: boolean,
+  handleClose: () => void
+
 }
  
 interface RoomEditState {
   room: string,
-
-  show: boolean,
   open: boolean
 }
  
 class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
   constructor(props: RoomEditProps) {
     super(props);
-    this.state = { room: this.props.postToUpdate.room, show: false, open: false};
+    this.state = { room: this.props.postToUpdate.room, open: false};
   }
 
-  roomUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+//! start of edit room fetch--------------------------------------
+roomUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     console.log('update button was clicked')
 
     e.preventDefault();
@@ -58,15 +59,11 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
       console.log({error})
     }
   }
-
-  
-  handleClose = () => { this.setState({show: false})}
-  handleShow = () => { this.setState({show: true})}
+//? end of edit room fetch--------------------------------------
 
 
-
-
-  startDelete = async () => {
+//! start of delete room fetch--------------------------------------
+startDelete = async () => {
 
     try {
       const res = await fetch(`http://localhost:4000/room/${this.props.postToUpdate.id}`, {
@@ -84,17 +81,15 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
     }
     this.props.deleteRoom()
   }
-
-
- 
+//? end of delete room fetch--------------------------------------
 
 
   render() { 
     return ( 
       <>
 
-    <Modal show={true} style={{fontFamily: 'monospace'}} >
-    {/* <CloseButton onClick={() => this.handleClose()} aria-label="Hide" /> */}
+    <Modal show={this.props.show} style={{fontFamily: 'monospace'}} >
+    <CloseButton style={{marginLeft: '90%', fontFamily: 'monospace'}} onClick={() => this.props.handleClose()} aria-label="Hide" />
       <ModalHeader>
         <ModalBody>
           <Form onSubmit={this.roomUpdate} >

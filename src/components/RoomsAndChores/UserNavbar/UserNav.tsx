@@ -2,7 +2,7 @@ import React from 'react'
 
 import About from '../../Home/AboutUs'
 import Logout from '../../Auth/Navbar/Logout';
-import Display from '../DisplayRoom'
+import Display from '../DisplayHouseEdit'
 
 // import Navbar from 'react-bootstrap/NavBar'
 // import Nav from 'react-bootstrap/Nav'

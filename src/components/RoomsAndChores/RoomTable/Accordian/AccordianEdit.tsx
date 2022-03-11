@@ -95,12 +95,11 @@ class AccordianEdit extends React.Component<AccordianEditProps, AccordianEditSta
   render() { 
 
     return ( 
-    <>
-    <h3>this WILL HAVE buttons</h3>
+    <div>
     <Accordion className='accDisplay'>
      {this.props.rooms.length > 0 ? this.roomDisplay() : null}
     </Accordion> 
-    </>
+    </div>
     );
   }
 }

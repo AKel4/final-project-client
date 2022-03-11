@@ -12,7 +12,6 @@ import RoomEdit from './RoomTable/RoomEdit';
 
 interface DisplayProps {
   token: string | null,
-  path: string
 }
  
 interface DisplayState {
@@ -60,54 +59,14 @@ fetchRooms = async () => {
 // ?End of fetchRooms()--------------------------------------
 
 
-handleClose = () => { this.setState({show: false})}
-handleShow = () => { this.setState({show: true})}
-
-
-
-editRoom = (rowInformation: IRoomGetAllResponse) => {
-
-  this.setState({postToUpdate: rowInformation})
-  this.updateOn()
-}
-
-deleteRoom = () => {
-
-  this.updateOff()
-  this.fetchRooms()
-  }
-
-
-updateOn = () => {
-  this.setState({updateActive: true})
-
-}
-
-updateOff = () => {
-  this.setState({updateActive: false})
-}
-
-
-
-
 render() { 
 
     return ( 
     <div style={{backgroundImage: `url(${background})`, paddingBottom: '20vh', height: '844px'}}>
 
     <Container >
-     
-     {this.props.path === '/' ? (
-       <AccordianEdit token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} editRoom={this.editRoom} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} rooms={this.state.rooms} />
-     ) : (
-       <>
-      <AccordianDisplay token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} editRoom={this.editRoom} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} rooms={this.state.rooms} />
-    
-      <RoomCreate token={this.props.token} fetchRooms={this.fetchRooms}/>
-
-      {this.state.updateActive == true ? <RoomEdit rooms={this.state.rooms} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} /> : null}
-      </>
-     )}
+  
+      <AccordianDisplay token={this.props.token} fetchRooms={this.fetchRooms} postToUpdate={this.state.postToUpdate} rooms={this.state.rooms} />
         
     </Container>
     </div> 
