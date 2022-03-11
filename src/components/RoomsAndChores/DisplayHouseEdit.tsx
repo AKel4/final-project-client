@@ -11,7 +11,9 @@ import RoomEdit from './RoomTable/RoomEdit';
 
 
 interface DisplayEditProps {
-  token: string | null,
+  token: string,
+  admin: boolean,
+
 }
  
 interface DisplayEditState {
@@ -59,7 +61,7 @@ fetchAdmin = async () => {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
-        'Authorization': String(localStorage.getItem('token'))
+        'Authorization': String(localStorage.getItem('admin')),
       }),
     })
     const data = await res.json()
@@ -73,7 +75,7 @@ fetchAdmin = async () => {
 }
 
  componentDidMount = () => {
-   (admin) ? (
+   (this.props.admin) ? (
      this.fetchAdmin()
    ) : (
      this.fetchRooms()

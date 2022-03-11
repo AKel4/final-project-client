@@ -33,13 +33,14 @@ const App = () => {
 
   const clearLocalStorage = () => {
     localStorage.clear();
-    setToken('')
+    setToken('');
+    setAdmin(false)
   }
 
   const protectedViews = () => {
     return (
       token === localStorage.getItem('token') ? 
-    <Main clearLocalStorage={clearLocalStorage} token={token as string} />
+    <Main clearLocalStorage={clearLocalStorage} token={token as string} admin={admin as boolean}/>
       :  
     <AuthMain updateLocalStorage={updateLocalStorage} clearLocalStorage={clearLocalStorage} token={token as string} admin={admin as boolean}/>
     )}

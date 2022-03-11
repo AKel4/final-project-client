@@ -6,9 +6,9 @@ import DisplayGenerator from '../DisplayGenerator';
 import DisplayEdit from '../DisplayHouseEdit';
 
 interface MainProps {
-  clearLocalStorage: (token:string) => void
-  token: string
-
+  clearLocalStorage: (token:string, adminStatus: boolean) => void
+  token: string,
+  admin: boolean,
 }
  
 interface MainState {
@@ -29,7 +29,7 @@ class Main extends React.Component<MainProps, MainState> {
 
                     <Route path="/" element={ <Display token={this.props.token} /> } />
 
-                    <Route path="/edit" element={ <DisplayEdit token={this.props.token} /> } />
+                    <Route path="/edit" element={ <DisplayEdit token={this.props.token} admin={this.props.admin} /> } />
 
                     <Route  path="/about" element={ <About /> } />
 
