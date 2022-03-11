@@ -1,6 +1,9 @@
 import React from 'react'
+import Dropdown from 'react-bootstrap/esm/Dropdown';
+import DropdownButton from 'react-bootstrap/esm/DropdownButton';
 import Generator from '../RandomGenerator/Generator';
 import ChoreCreate from './ChoreTable/ChoreCreate';
+import background from '../../assets/background.png'
 import { IChores, IRoomGetAllResponse } from './RoomTable/room.getall.interface';
 
 interface DisplayGeneratorProps {
@@ -45,11 +48,34 @@ componentDidMount = () => {
   this.fetchForRandom()
 }
 
+
+
+
   render() { 
   
     return ( 
-    <div>
-      <Generator fetchForRandom={this.fetchForRandom} rooms={this.state.rooms} chores={this.state.chores} />
+    <div style={{paddingTop: '5vh', backgroundImage: `url(${background})`, paddingBottom: '47vh', height: '844px', fontFamily: 'monospace'}}>
+       
+  
+      <div>
+      <DropdownButton
+        id="dropdown-button-dark-example2"
+        variant="secondary"
+        menuVariant="dark"
+        title="Choose time limit"
+        className="mt-2"
+        >
+        <Dropdown.Item>10 minutes</Dropdown.Item>
+        <Dropdown.Item>20 minutes</Dropdown.Item>
+        <Dropdown.Item>30 minutes</Dropdown.Item>
+        <Dropdown.Item>40 minutes</Dropdown.Item>
+        <Dropdown.Item>60 minutes</Dropdown.Item>
+        <Dropdown.Item>unlimited</Dropdown.Item>
+        
+      </DropdownButton>
+      </div>
+
+     <Generator fetchForRandom={this.fetchForRandom} rooms={this.state.rooms} chores={this.state.chores} />
   
     </div> );
   }
