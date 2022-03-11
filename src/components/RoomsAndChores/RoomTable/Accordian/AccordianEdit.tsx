@@ -3,11 +3,12 @@ import * as React from 'react';
 import { Accordion, Button, ListGroup } from 'react-bootstrap';
 import { Badge } from 'react-bootstrap';
 
-import ChoreCreate from '../ChoreTable/ChoreCreate';
-import ChoreDelete from '../ChoreTable/ChoreDelete';
-import ChoreEdit from '../ChoreTable/ChoreEdit';
-import DisplayChore from '../DisplayGenerator';
-import { IChores, IRoomGetAllResponse } from './room.getall.interface';
+
+
+import ChoreCreate from '../../ChoreTable/ChoreCreate';
+import ChoreDelete from '../../ChoreTable/ChoreDelete';
+import ChoreEdit from '../../ChoreTable/ChoreEdit';
+import { IChores, IRoomGetAllResponse } from '../room.getall.interface';
 
 interface AccordianEditProps {
   token: string | null,
@@ -96,7 +97,7 @@ class AccordianEdit extends React.Component<AccordianEditProps, AccordianEditSta
     return ( 
     <>
     <h3>this WILL HAVE buttons</h3>
-    <Accordion>
+    <Accordion className='accDisplay'>
      {this.props.rooms.length > 0 ? this.roomDisplay() : null}
     </Accordion> 
     </>

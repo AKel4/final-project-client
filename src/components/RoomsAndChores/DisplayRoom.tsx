@@ -4,7 +4,7 @@ import {Container} from 'reactstrap';
 import background from '../../assets/background.png'
 
 import AccordianDisplay from './RoomTable/AccordianDisplay';
-import AccordianEdit from './RoomTable/AccordianEdit';
+import AccordianEdit from './RoomTable/Accordian/AccordianEdit';
 import { IRoomGetAllResponse } from './RoomTable/room.getall.interface';
 import RoomCreate from './RoomTable/RoomCreate';
 import RoomEdit from './RoomTable/RoomEdit';

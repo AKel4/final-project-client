@@ -1,0 +1,9 @@
+@font-face {
+  font-family: AboutFont;
+  src: url(../../assets/AboutFont.ttf);
+}
+
+#title.h3 {
+  font-family: 'AboutFont', sans-serif;
+  
+}

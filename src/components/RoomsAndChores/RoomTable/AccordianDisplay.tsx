@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { Accordion, Button, ListGroup } from 'react-bootstrap';
 import { Badge } from 'react-bootstrap';
-
 import ChoreCreate from '../ChoreTable/ChoreCreate';
 import ChoreDelete from '../ChoreTable/ChoreDelete';
 import ChoreEdit from '../ChoreTable/ChoreEdit';

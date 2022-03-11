@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import background from '../../assets/background.png'
-
+import './About.css'
 import { List } from 'reactstrap';
 
 interface AboutProps {
@@ -17,10 +17,12 @@ class About extends React.Component<AboutProps, AboutState> {
     super(props);
     this.state = {  };
   }
+
+
   render() { 
     return ( 
     <div style={{backgroundImage: `url(${background})`}} >
-        <h3 style={{backgroundColor: '#168291', color: 'white', marginBottom: '0', padding: '0 .5em 1em .5em', borderBottom: 'solid 1px black'}}>Disorganized and overwhelmed? You're not alone.</h3>
+        <h3 id='title' style={{backgroundColor: '#168291', color: 'white', marginBottom: '0', padding: '0 .5em 1em .5em', borderBottom: 'solid 1px black', fontFamily: 'AboutFont'}}>Disorganized and overwhelmed?</h3>
       
         <div style={{backgroundColor: '#1CA5B8', marginBottom: '0', borderBottom: 'solid 1px black', padding: '0 .5em 1em .5em', fontFamily: 'monospace'}}>
         <p>Executive Dysfunction is widely associated neurodivergent conditions. If you are struggling at 'adulting' and feeling overwhelmed in your living space, this is for you. </p>
