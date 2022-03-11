@@ -9,8 +9,9 @@ import Auth from '../Auth';
 
 interface AuthMainProps {
   clearLocalStorage: (token:string) => void
+  updateLocalStorage: (newToken: string, adminStatus: string) => void,
   token: string,
-  updateLocalStorage: (newToken: string) => void,
+  admin: boolean
 }
  
 interface AuthMainState {
@@ -28,7 +29,7 @@ class AuthMain extends React.Component<AuthMainProps, AuthMainState> {
             <AuthNav clearLocalStorage={this.props.clearLocalStorage} />
                 <Routes>
                     <Route  path="/about" element={ <About /> } />
-                    <Route path='/' element={ <Auth updateLocalStorage={this.props.updateLocalStorage} token={this.props.token} />} />
+                    <Route path='/' element={ <Auth updateLocalStorage={this.props.updateLocalStorage} token={this.props.token} admin={this.props.admin} />} />
                 </Routes>
         </React.Fragment>
      );

@@ -33,6 +33,7 @@ class DisplayEdit extends React.Component<DisplayEditProps, DisplayEditState> {
       postToUpdate: {} as IRoomGetAllResponse, 
     };
   }
+
 // ! start of fetchRooms()--------------------------------------
 fetchRooms = async () => {
     try {
@@ -52,9 +53,33 @@ fetchRooms = async () => {
       console.log({error})
     }
 }
+fetchAdmin = async () => {
+    try {
+    const res = await fetch('http://localhost:4000/room/allroom', {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': String(localStorage.getItem('token'))
+      }),
+    })
+    const data = await res.json()
+      this.setState({ rooms: data})
+
+    console.log(data)
+
+    } catch (error) {
+      console.log({error})
+    }
+}
 
  componentDidMount = () => {
-   this.fetchRooms()
+   (admin) ? (
+     this.fetchAdmin()
+   ) : (
+     this.fetchRooms()
+   )
+
+  
 }
 // ?End of fetchRooms()--------------------------------------
 

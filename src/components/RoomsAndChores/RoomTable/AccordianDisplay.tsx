@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Accordion, ListGroup } from 'react-bootstrap';
 import { Badge } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { IChores, IRoomGetAllResponse } from './room.getall.interface';
 
 interface AccordianDisplayProps {
@@ -69,7 +70,7 @@ class AccordianDisplay extends React.Component<AccordianDisplayProps, AccordianD
     return ( 
     <div>
     <Accordion style={{fontFamily: 'monospace'}}>
-     {this.props.rooms.length > 0 ? this.roomDisplay() : null}
+     {this.props.rooms.length > 0 ? this.roomDisplay() : <h3 style={{paddingTop: '12vh', textAlign: 'center'}}>You don't have any room yet. Click <Link to='/edit'> Edit My House</Link> to get started!</h3>}
     </Accordion> 
     </div>
     );

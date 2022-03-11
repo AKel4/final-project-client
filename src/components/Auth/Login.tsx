@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Button, ButtonToggle, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 interface LoginProps {
-  updateLocalStorage: (newToken: string) => void,
+  updateLocalStorage: (newToken: string, adminStatus: string) => void,
   token: string | null,
+  admin: boolean
 
 }
  
@@ -40,7 +41,7 @@ class Login extends React.Component<LoginProps, LoginState> {
         })
         const data = await res.json()
       
-        this.props.updateLocalStorage(data.sessionToken)
+        this.props.updateLocalStorage(data.sessionToken, data.user.admin)
        console.log(data)
 
         

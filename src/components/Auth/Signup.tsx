@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { OverlayTrigger } from 'react-bootstrap';
 import Alert from 'react-bootstrap/esm/Alert';
 import { Button, ButtonToggle, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 interface SignupProps {
-  updateLocalStorage: (newToken: string) => void,
+  updateLocalStorage: (newToken: string, adminStatus: string) => void,
   token: string | null,
+  admin: boolean
 }
  
 interface SignupState {
@@ -48,7 +50,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
         })
         const data = await res.json()
       
-        this.props.updateLocalStorage(data.sessionToken)
+        this.props.updateLocalStorage(data.sessionToken, data.user.admin)
       //  console.log(data.message)
        
       
@@ -95,7 +97,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
 
               <FormGroup>
               <Label htmlFor='password' style={{fontFamily: 'Poppins'}} >Password :</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={(e)=> this.setState({password: e.target.value})} name='password' type='password' value={this.state.password}/>
+              <Input style={{border: 'solid black 3px'}} onChange={(e)=> this.setState({password: e.target.value})} name='password' type='password' minLength={5} required value={this.state.password}/>
               </FormGroup>
 
               <FormGroup>
@@ -108,7 +110,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
 
               <FormGroup>
               <Label htmlFor='houseCode' style={{fontFamily: 'Poppins'}} >Enter a unique house code:</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={(e)=> this.setState({houseCode: (e.target.value)})} name='houseCode' type='text'  value={String(this.state.houseCode)}/>
+              <Input style={{border: 'solid black 3px'}} onChange={(e)=> this.setState({houseCode: (e.target.value)})} name='houseCode' type='text' required value={String(this.state.houseCode)}/>
             </FormGroup>
             <Button type='submit'>Sign Up</Button>
           </Form>

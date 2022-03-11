@@ -12,18 +12,22 @@ import APIURL from './helpers/environment';
 
 const App = () => {
   const [token, setToken] = useState<string | null>('');
+  const [admin, setAdmin] = useState(false);
   
   useEffect(() => {
     if (localStorage.getItem('token')){
       setToken(localStorage.getItem("token"))
     }
+    setAdmin((localStorage.getItem('admin') === 'admin' ? true: false))
     
   }, []);
 
 
-  const updateLocalStorage = (newToken: string) => {
+  const updateLocalStorage = (newToken: string, adminStatus: string) => {
     localStorage.setItem('token', newToken);
-    setToken(newToken)
+    setToken(newToken);
+    localStorage.setItem('admin', adminStatus);
+    setAdmin(adminStatus === 'admin' ? true : false)
   }
 
 
@@ -37,7 +41,7 @@ const App = () => {
       token === localStorage.getItem('token') ? 
     <Main clearLocalStorage={clearLocalStorage} token={token as string} />
       :  
-    <AuthMain updateLocalStorage={updateLocalStorage} clearLocalStorage={clearLocalStorage} token={token as string}/>
+    <AuthMain updateLocalStorage={updateLocalStorage} clearLocalStorage={clearLocalStorage} token={token as string} admin={admin as boolean}/>
     )}
 
 
