@@ -12,13 +12,13 @@ import APIURL from './helpers/environment';
 
 const App = () => {
   const [token, setToken] = useState<string | null>('');
-  const [admin, setAdmin] = useState(false);
+  const [role, setRole] = useState(false);
   
   useEffect(() => {
     if (localStorage.getItem('token')){
       setToken(localStorage.getItem("token"))
     }
-    setAdmin((localStorage.getItem('admin') === 'admin' ? true: false))
+    setRole((localStorage.getItem('admin') === 'admin' ? true: false))
     
   }, []);
 
@@ -27,22 +27,22 @@ const App = () => {
     localStorage.setItem('token', newToken);
     setToken(newToken);
     localStorage.setItem('admin', adminStatus);
-    setAdmin(adminStatus === 'admin' ? true : false)
+    setRole(adminStatus === 'admin' ? true : false)
   }
 
 
   const clearLocalStorage = () => {
     localStorage.clear();
     setToken('');
-    setAdmin(false)
+    setRole(false)
   }
 
   const protectedViews = () => {
     return (
       token === localStorage.getItem('token') ? 
-    <Main clearLocalStorage={clearLocalStorage} token={token as string} admin={admin as boolean}/>
+    <Main clearLocalStorage={clearLocalStorage} token={token as string} role={role as boolean}/>
       :  
-    <AuthMain updateLocalStorage={updateLocalStorage} clearLocalStorage={clearLocalStorage} token={token as string} admin={admin as boolean}/>
+    <AuthMain updateLocalStorage={updateLocalStorage} clearLocalStorage={clearLocalStorage} token={token as string} role={role as boolean}/>
     )}
 
 

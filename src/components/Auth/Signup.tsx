@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { OverlayTrigger } from 'react-bootstrap';
 import Alert from 'react-bootstrap/esm/Alert';
-import { Button, ButtonToggle, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 interface SignupProps {
   updateLocalStorage: (newToken: string, adminStatus: string) => void,
   token: string | null,
-  admin: boolean
+  role: boolean
 }
  
 interface SignupState {
@@ -50,8 +50,8 @@ class Signup extends React.Component<SignupProps, SignupState> {
         })
         const data = await res.json()
       
-        this.props.updateLocalStorage(data.sessionToken, data.user.admin)
-      //  console.log(data.message)
+        this.props.updateLocalStorage(data.sessionToken, this.state.admin)
+       console.log(data)
        
       
       this.setState({

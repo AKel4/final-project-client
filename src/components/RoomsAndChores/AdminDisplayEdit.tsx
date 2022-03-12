@@ -3,11 +3,10 @@ import React from 'react'
 import {Container} from 'reactstrap';
 import background from '../../assets/background.png'
 
-import AccordianDisplay from './RoomTable/AccordianDisplay';
-import AccordianEdit from './RoomTable/Accordian/AccordianEdit';
 import { IRoomGetAllResponse } from './RoomTable/room.getall.interface';
 import RoomCreate from './RoomTable/RoomCreate';
 import RoomEdit from './RoomTable/RoomEdit';
+import AdminEdit from './RoomTable/Accordian/AdminEdit';
 
 
 interface DisplayEditProps {
@@ -36,25 +35,8 @@ class DisplayEdit extends React.Component<DisplayEditProps, DisplayEditState> {
     };
   }
 
-// ! start of fetchRooms()--------------------------------------
-fetchRooms = async () => {
-    try {
-    const res = await fetch('http://localhost:4000/room/myrooms', {
-      method: 'GET',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        'Authorization': String(localStorage.getItem('token'))
-      }),
-    })
-    const data = await res.json()
-    this.setState({ rooms: data})
-    
-    console.log(data)
+// ! start of fetchAdmin()--------------------------------------
 
-    } catch (error) {
-      console.log({error})
-    }
-}
 fetchAdmin = async () => {
     try {
     const res = await fetch('http://localhost:4000/room/allroom', {
@@ -75,15 +57,9 @@ fetchAdmin = async () => {
 }
 
  componentDidMount = () => {
-   (this.props.role === true) ? (
      this.fetchAdmin()
-   ) : (
-     this.fetchRooms()
-   )
-
-  
 }
-// ?End of fetchRooms()--------------------------------------
+// ?End of fetchAdmin()--------------------------------------
 
 
 handleClose = () => { this.setState({show: false})}
@@ -101,7 +77,7 @@ editRoom = (rowInformation: IRoomGetAllResponse) => {
 deleteRoom = () => {
 
   this.updateOff()
-  this.fetchRooms()
+  this.fetchAdmin()
   }
 
 
@@ -124,11 +100,11 @@ render() {
 
     <Container >
    
-       <AccordianEdit token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} editRoom={this.editRoom} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} rooms={this.state.rooms} />
+       <AdminEdit token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchAdmin} updateOff={this.updateOff} editRoom={this.editRoom} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} rooms={this.state.rooms} />
     
-      <RoomCreate token={this.props.token} fetchRooms={this.fetchRooms}/>
+      <RoomCreate token={this.props.token} fetchRooms={this.fetchAdmin}/>
 
-      {this.state.updateActive == true ? <RoomEdit rooms={this.state.rooms} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchRooms} updateOff={this.updateOff} show={this.state.show} handleClose={this.handleClose} /> : null}
+      {this.state.updateActive == true ? <RoomEdit rooms={this.state.rooms} deleteRoom={this.deleteRoom} postToUpdate={this.state.postToUpdate} token={this.props.token} updateOn={this.updateOn} fetchRooms={this.fetchAdmin} updateOff={this.updateOff} show={this.state.show} handleClose={this.handleClose} /> : null}
         
     </Container>
     </div> 

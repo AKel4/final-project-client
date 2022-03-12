@@ -4,11 +4,12 @@ import About from '../../Home/AboutUs';
 import Display from '../DisplayHouse'
 import DisplayGenerator from '../DisplayGenerator';
 import DisplayEdit from '../DisplayHouseEdit';
+import AdminDisplayEdit from '../AdminDisplayEdit';
 
 interface MainProps {
   clearLocalStorage: (token:string, adminStatus: boolean) => void
   token: string,
-  admin: boolean,
+  role: boolean,
 }
  
 interface MainState {
@@ -20,7 +21,11 @@ class Main extends React.Component<MainProps, MainState> {
     super(props);
     this.state = {   };
   }
+
+
+
   render() { 
+    console.log(!localStorage.getItem('admin'))
     return ( 
       <React.Fragment>
                 <Routes>
@@ -29,7 +34,11 @@ class Main extends React.Component<MainProps, MainState> {
 
                     <Route path="/" element={ <Display token={this.props.token} /> } />
 
-                    <Route path="/edit" element={ <DisplayEdit token={this.props.token} admin={this.props.admin} /> } />
+                    {!localStorage.getItem('admin') ? (
+                      <Route path="/edit" element={ <AdminDisplayEdit token={this.props.token} role={this.props.role} /> } />
+                    ) : (
+                      <Route path="/edit" element={ <DisplayEdit token={this.props.token} role={this.props.role} /> } />
+                    )}
 
                     <Route  path="/about" element={ <About /> } />
 

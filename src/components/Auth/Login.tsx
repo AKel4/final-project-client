@@ -4,7 +4,7 @@ import { Button, ButtonToggle, Container, Form, FormGroup, Input, Label } from '
 interface LoginProps {
   updateLocalStorage: (newToken: string, adminStatus: string) => void,
   token: string | null,
-  admin: boolean
+  role: boolean
 
 }
  
@@ -42,7 +42,7 @@ class Login extends React.Component<LoginProps, LoginState> {
         const data = await res.json()
       
         this.props.updateLocalStorage(data.sessionToken, data.user.admin)
-       console.log(data)
+       console.log(data.user.admin)
 
         
           this.setState({
