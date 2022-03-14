@@ -8,7 +8,7 @@ import {
   IChores,
   IRoomGetAllResponse,
 } from "./RoomTable/room.getall.interface";
-import { Badge, Button, ListGroup } from "react-bootstrap";
+import { Alert, Badge, Button, ListGroup } from "react-bootstrap";
 
 interface DisplayGeneratorProps {
   token: string | null;
@@ -98,12 +98,16 @@ class DisplayGenerator extends React.Component<
 
     this.setState({ ...this.state, generatedChore: randomChore });
 
+
     console.log(allChores, "all chores");
     console.log(randomNum, "random num");
     console.log(choreIndex, "chore index");
     console.log(randomChore, "random chore");
-   
   }
+
+
+    
+
   render() {
     return (
       <div

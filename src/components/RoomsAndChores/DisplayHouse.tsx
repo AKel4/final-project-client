@@ -61,8 +61,11 @@ class Display extends React.Component<DisplayProps, DisplayState> {
       <div
         style={{
           backgroundImage: `url(${background})`,
-          paddingBottom: "20vh",
-          height: "844px",
+          // paddingBottom: "20vh",
+          height: "100vh",
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          
         }}
       >
         <Container>
