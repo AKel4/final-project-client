@@ -1,28 +1,24 @@
-import React from 'react'
-import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
-import About from '../../Home/AboutUs';
-import Display from '../DisplayHouse'
-import DisplayGenerator from '../DisplayGenerator';
-import DisplayEdit from '../DisplayHouseEdit';
-import AdminDisplayEdit from '../AdminDisplayEdit';
+import React from "react";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import About from "../../Home/AboutUs";
+import Display from "../DisplayHouse";
+import DisplayGenerator from "../DisplayGenerator";
+import DisplayEdit from "../DisplayHouseEdit";
+import AdminDisplayEdit from "../AdminDisplayEdit";
 
 interface MainProps {
-  clearLocalStorage: (token:string, adminStatus: boolean) => void
-  token: string,
-  role: boolean,
+  clearLocalStorage: (token: string, adminStatus: boolean) => void;
+  token: string;
+  role: boolean;
 }
- 
-interface MainState {
-  
-}
- 
+
+interface MainState {}
+
 class Main extends React.Component<MainProps, MainState> {
   constructor(props: MainProps) {
     super(props);
-    this.state = {   };
+    this.state = {};
   }
-
-
 
   render() {
     return (
@@ -30,11 +26,8 @@ class Main extends React.Component<MainProps, MainState> {
         <Routes>
           <Route
             path="/generate"
-            element={<DisplayGenerator 
-                      token={this.props.token} 
-                    />
-                  }
-               />
+            element={<DisplayGenerator token={this.props.token} />}
+          />
 
           <Route path="/" element={<Display token={this.props.token} />} />
 
