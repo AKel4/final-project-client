@@ -24,28 +24,44 @@ class Main extends React.Component<MainProps, MainState> {
 
 
 
-  render() { 
-    console.log(!localStorage.getItem('admin'))
-    return ( 
+  render() {
+    return (
       <React.Fragment>
-                <Routes>
+        <Routes>
+          <Route
+            path="/generate"
+            element={<DisplayGenerator 
+                      token={this.props.token} 
+                    />
+                  }
+               />
 
-                    <Route path="/generate" element={ <DisplayGenerator token={this.props.token} /> } />
+          <Route path="/" element={<Display token={this.props.token} />} />
 
-                    <Route path="/" element={ <Display token={this.props.token} /> } />
+          {!JSON.parse(localStorage.getItem("admin") || "false") ? (
+            <Route
+              path="/edit"
+              element={
+                <AdminDisplayEdit
+                  token={this.props.token}
+                  role={this.props.role}
+                />
+              }
+            />
+          ) : (
+            <Route
+              path="/edit"
+              element={
+                <DisplayEdit token={this.props.token} role={this.props.role} />
+              }
+            />
+          )}
 
-                    {!localStorage.getItem('admin') ? (
-                      <Route path="/edit" element={ <AdminDisplayEdit token={this.props.token} role={this.props.role} /> } />
-                    ) : (
-                      <Route path="/edit" element={ <DisplayEdit token={this.props.token} role={this.props.role} /> } />
-                    )}
-
-                    <Route  path="/about" element={ <About /> } />
-
-                </Routes>
-        </React.Fragment> 
-     );
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </React.Fragment>
+    );
   }
 }
- 
+
 export default Main;

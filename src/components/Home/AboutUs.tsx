@@ -27,7 +27,7 @@ class About extends React.Component<AboutProps, AboutState> {
         <div style={{backgroundColor: '#1CA5B8', marginBottom: '0', borderBottom: 'solid 1px black', padding: '0 .5em 1em .5em', fontFamily: 'monospace'}}>
         <p>Executive Dysfunction is widely associated neurodivergent conditions. If you are struggling at 'adulting' and feeling overwhelmed in your living space, this is for you. </p>
 
-        <p>I came across this information that people with executive dysfunction typically operate off of different pillars of motivation than neurotypical people. Those 5 pillars of motivation can be simplified in the acronym INCUP. Which stands for: </p>
+        <p>People with executive dysfunction typically operate off of different pillars of motivation than neurotypical people. Those 5 pillars of motivation can be simplified in the acronym INCUP. Which stands for: </p>
 
         <List type='unstyled'>
           <ul>
