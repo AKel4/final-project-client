@@ -110,7 +110,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
 
               <FormGroup>
               <Label htmlFor='houseCode' style={{fontFamily: 'Poppins'}} >Enter a unique house code:</Label>
-              <Input style={{border: 'solid black 3px'}} onChange={(e)=> this.setState({houseCode: (e.target.value)})} name='houseCode' type='text' required value={String(this.state.houseCode)}/>
+              <Input style={{border: 'solid black 3px'}} onChange={(e)=> this.setState({houseCode: (e.target.value)})} name='houseCode' type='number' minLength={5} required value={this.state.houseCode}/>
             </FormGroup>
             <Button type='submit'>Sign Up</Button>
           </Form>
