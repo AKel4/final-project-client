@@ -1,13 +1,11 @@
 import React from "react";
-import { Navbar } from "react-bootstrap";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import About from "../../Home/AboutUs";
-import AuthNav from "./Navbar";
-import Nav from "../Navbar/Navbar";
 import Auth from "../Auth";
+import Logout from "./Logout";
 
 interface AuthMainProps {
-  clearLocalStorage: (token: string) => void;
+  clearLocalStorage: () => void;
   updateLocalStorage: (newToken: string, adminStatus: string) => void;
   token: string;
   role: boolean;
@@ -23,7 +21,7 @@ class AuthMain extends React.Component<AuthMainProps, AuthMainState> {
   render() {
     return (
       <React.Fragment>
-        <AuthNav clearLocalStorage={this.props.clearLocalStorage} />
+        <Logout clearLocalStorage={this.props.clearLocalStorage} />
         <Routes>
           <Route path="/about" element={<About />} />
           <Route

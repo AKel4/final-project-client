@@ -98,7 +98,6 @@ class AdminEdit extends React.Component<AdminEditProps, AdminEditState> {
   render() {
     return (
       <div>
-        <h3>from Admin</h3>
         <Accordion className="accDisplay">
           {this.props.rooms.length > 0 ? this.roomDisplay() : null}
         </Accordion>
