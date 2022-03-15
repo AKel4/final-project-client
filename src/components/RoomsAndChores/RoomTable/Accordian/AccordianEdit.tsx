@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Accordion, Button, ListGroup } from "react-bootstrap";
+import { Accordion, ListGroup } from "react-bootstrap";
 import { Badge } from "react-bootstrap";
 
 import ChoreCreate from "../../ChoreTable/ChoreCreate";
@@ -26,10 +26,10 @@ class AccordianEdit extends React.Component<
   AccordianEditState
 > {
   showButtons = true;
-  constructor(props: AccordianEditProps) {
-    super(props);
-    // this.state = { :  };
-  }
+  // constructor(props: AccordianEditProps) {
+  //   super(props);
+     // this.state = { :  };
+  // }
 
   startUpdate = (room: IRoomGetAllResponse) => {
     this.props.editRoom(room);

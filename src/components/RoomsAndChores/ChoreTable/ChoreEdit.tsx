@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormGroup from "react-bootstrap/FormGroup";
@@ -9,8 +9,7 @@ import ModalBody from "react-bootstrap/ModalBody";
 import Badge from "react-bootstrap/esm/Badge";
 import CloseButton from "react-bootstrap/esm/CloseButton";
 import {
-  IChores,
-  IRoomGetAllResponse,
+  IChores
 } from "../RoomTable/room.getall.interface";
 import APIURL from '../../../helpers/environment'
 

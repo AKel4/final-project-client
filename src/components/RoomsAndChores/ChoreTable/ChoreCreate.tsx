@@ -9,8 +9,7 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalBody from "react-bootstrap/ModalBody";
 import { Badge, CloseButton } from "react-bootstrap";
 import {
-  IChores,
-  IRoomGetAllResponse,
+  IRoomGetAllResponse
 } from "../RoomTable/room.getall.interface";
 import APIURL from '../../../helpers/environment'
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import About from "../../Home/AboutUs";
 import Auth from "../Auth";
-import Logout from "./Logout";
+
 
 interface AuthMainProps {
   clearLocalStorage: () => void;

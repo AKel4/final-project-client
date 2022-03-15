@@ -1,16 +1,10 @@
 import React from "react";
 
-import About from "../../Home/AboutUs";
 import Logout from "../../Auth/Navbar/Logout";
-import Display from "../DisplayHouseEdit";
 import {GiMagicBroom} from 'react-icons/gi'
 
-// import Navbar from 'react-bootstrap/NavBar'
-// import Nav from 'react-bootstrap/Nav'
-// import { NavItem, NavLink } from 'react-bootstrap'
-// import NavDropdown from 'react-bootstrap/NavDropdown'
 
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Navbar, NavDropdown, NavLink, Nav, NavItem } from "react-bootstrap";
 
 interface UserNavProps {

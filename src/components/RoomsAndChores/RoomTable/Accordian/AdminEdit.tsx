@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Accordion, Button, ListGroup } from "react-bootstrap";
+import { Accordion, ListGroup } from "react-bootstrap";
 import { Badge } from "react-bootstrap";
 
 import ChoreCreate from "../../ChoreTable/ChoreCreate";
@@ -23,10 +23,10 @@ interface AdminEditState {}
 
 class AdminEdit extends React.Component<AdminEditProps, AdminEditState> {
   showButtons = true;
-  constructor(props: AdminEditProps) {
-    super(props);
-    // this.state = { :  };
-  }
+  // constructor(props: AdminEditProps) {
+  //   super(props);
+  // this.state = { :  };
+  // }
 
   startUpdate = (room: IRoomGetAllResponse) => {
     this.props.editRoom(room);

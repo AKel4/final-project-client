@@ -107,7 +107,7 @@ class DisplayEdit extends React.Component<DisplayEditProps, DisplayEditState> {
 
           <RoomCreate token={this.props.token} fetchRooms={this.fetchRooms} />
 
-          {this.state.updateActive == true ? (
+          {this.state.updateActive === true ? (
             <RoomEdit
               rooms={this.state.rooms}
               deleteRoom={this.deleteRoom}

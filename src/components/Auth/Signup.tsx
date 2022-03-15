@@ -38,7 +38,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
     const requestObject = {
       email: this.state.email,
       password: this.state.password,
-      admin: this.state.admin == "false" ? false : true,
+      admin: this.state.admin === "false" ? false : true,
       houseCode: Number(this.state.houseCode),
     };
 

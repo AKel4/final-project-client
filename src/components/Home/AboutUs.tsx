@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React from "react";
 import background from "../../assets/background.png";
 import "./About.css";
 import { List } from "reactstrap";
