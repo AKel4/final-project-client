@@ -1,4 +1,5 @@
 import * as React from "react";
+import Alert from "react-bootstrap/esm/Alert";
 import {
   Button,
   ButtonToggle,
@@ -18,6 +19,8 @@ interface LoginProps {
 interface LoginState {
   email: string;
   password: string;
+  errorMessage: string;
+  show: boolean
 }
 
 class Login extends React.Component<LoginProps, LoginState> {
@@ -27,6 +30,8 @@ class Login extends React.Component<LoginProps, LoginState> {
     this.state = {
       email: "",
       password: "",
+      errorMessage: "",
+      show: false
     };
   }
 
@@ -48,6 +53,10 @@ class Login extends React.Component<LoginProps, LoginState> {
       });
       const data = await res.json();
 
+      if (!data.hasOwnProperty("user")) {
+        throw new Error(data.message);
+      }
+
       this.props.updateLocalStorage(data.sessionToken, data.user.admin);
       console.log(data.user.admin);
 
@@ -55,9 +64,22 @@ class Login extends React.Component<LoginProps, LoginState> {
         email: "",
         password: "",
       });
-    } catch (error) {
+    } catch (error: any) {
       console.log({ error });
+      this.setState({show: true, errorMessage: error.message})
     }
+  };
+
+  alert = () => {
+    return (
+      <Alert
+        variant="danger"
+        onClose={() => this.setState({ show: false })}
+        dismissible
+      >
+        <Alert.Heading> {this.state.errorMessage} </Alert.Heading>
+      </Alert>
+    );
   };
 
   render() {
@@ -65,6 +87,7 @@ class Login extends React.Component<LoginProps, LoginState> {
       <div>
         <h2>Login</h2>
         <Container>
+        {this.state.show ? this.alert() : null}
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label htmlFor="email" style={{ fontFamily: "Poppins" }}>

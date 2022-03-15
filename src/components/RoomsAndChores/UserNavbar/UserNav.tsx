@@ -3,6 +3,7 @@ import React from "react";
 import About from "../../Home/AboutUs";
 import Logout from "../../Auth/Navbar/Logout";
 import Display from "../DisplayHouseEdit";
+import {GiMagicBroom} from 'react-icons/gi'
 
 // import Navbar from 'react-bootstrap/NavBar'
 // import Nav from 'react-bootstrap/Nav'
@@ -31,9 +32,10 @@ class UserNav extends React.Component<UserNavProps, UserNavState> {
         collapseOnSelect
         expand="lg"
         variant="light"
-        style={{ backgroundColor: "#E0F0D6", color: "white" }}
+        style={{ backgroundColor: "#E0F0D6",  color: "white" }}
       >
-        <Navbar.Brand>ADHD-Clean</Navbar.Brand>
+      
+        <Navbar.Brand style={{fontFamily: 'Special Elite', fontSize: '26pt'}}> ADHD-Clean <GiMagicBroom/> </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

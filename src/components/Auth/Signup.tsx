@@ -15,6 +15,7 @@ interface SignupState {
   admin: string;
   houseCode: string;
   show: boolean;
+  errorMessage: string;
 }
 
 class Signup extends React.Component<SignupProps, SignupState> {
@@ -28,6 +29,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
       houseCode: "",
 
       show: false,
+      errorMessage: ''
     };
   }
 
@@ -41,6 +43,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
     };
 
     try {
+
       const res = await fetch("http://localhost:4000/user/signup", {
         method: "POST",
         body: JSON.stringify(requestObject),
@@ -49,6 +52,10 @@ class Signup extends React.Component<SignupProps, SignupState> {
         }),
       });
       const data = await res.json();
+
+      if (!data.hasOwnProperty('user')) {
+        throw new Error(data.message)
+      }
 
       this.props.updateLocalStorage(data.sessionToken, this.state.admin);
       console.log(data);
@@ -59,26 +66,29 @@ class Signup extends React.Component<SignupProps, SignupState> {
         admin: "false",
         houseCode: "",
       });
-    } catch (error) {
+    } catch (error: any) {
       console.log({ error });
+      this.setState({show: true, errorMessage: error.message})
     }
   };
 
-  //    alert = () =>{
-  //       if (this.props.token == 'undefined') {
-  //       return (
-  //     <Alert variant="danger" onClose={() => this.setState({show: false})} dismissible>
-  //       <Alert.Heading>{Error}</Alert.Heading>
-
-  //     </Alert>
-  //       )};
-  // }
+  alert = () => {
+    return (
+      <Alert
+        variant="danger"
+        onClose={() => this.setState({ show: false })}
+        dismissible
+      >
+        <Alert.Heading> {this.state.errorMessage} </Alert.Heading>
+      </Alert>
+    );
+  };
 
   render() {
     return (
       <div>
-        <h2>signup</h2>
         <Container>
+        {this.state.show ? this.alert() : null}
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label htmlFor="email" style={{ fontFamily: "Poppins" }}>
