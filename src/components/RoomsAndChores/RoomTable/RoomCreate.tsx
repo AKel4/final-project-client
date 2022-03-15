@@ -7,6 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalBody from "react-bootstrap/ModalBody";
 import CloseButton from "react-bootstrap/esm/CloseButton";
+import APIURL from '../../../helpers/environment'
 
 interface RoomCreateProps {
   token: string | null;
@@ -31,7 +32,7 @@ class RoomCreate extends React.Component<RoomCreateProps, RoomCreateState> {
     const requestObject = { room: this.state.room };
 
     try {
-      const res = await fetch("http://localhost:4000/room/create", {
+      const res = await fetch(`${APIURL}/room/create`, {
         method: "POST",
         body: JSON.stringify(requestObject),
         headers: new Headers({

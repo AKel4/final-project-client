@@ -2,13 +2,14 @@ import * as React from "react";
 import Alert from "react-bootstrap/esm/Alert";
 import {
   Button,
-  ButtonToggle,
   Container,
   Form,
   FormGroup,
   Input,
   Label,
 } from "reactstrap";
+
+import APIURL from '../../helpers/environment'
 
 interface LoginProps {
   updateLocalStorage: (newToken: string, adminStatus: string) => void;
@@ -44,7 +45,7 @@ class Login extends React.Component<LoginProps, LoginState> {
     };
 
     try {
-      const res = await fetch("http://localhost:4000/user/login", {
+      const res = await fetch(`${APIURL}/user/login`, {
         method: "POST",
         body: JSON.stringify(requestObject),
         headers: new Headers({

@@ -7,8 +7,9 @@ import { Label, Input } from "reactstrap";
 import Modal from "react-bootstrap/Modal";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalBody from "react-bootstrap/ModalBody";
-import { IRoomGetAllResponse } from "./room.getall.interface";
 import { CloseButton } from "react-bootstrap";
+import { IRoomGetAllResponse } from "./room.getall.interface";
+import APIURL from '../../../helpers/environment'
 
 interface RoomEditProps {
   token: string | null;
@@ -42,7 +43,7 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
 
     try {
       const res = await fetch(
-        `http://localhost:4000/room/${this.props.postToUpdate.id}`,
+        `${APIURL}/room/${this.props.postToUpdate.id}`,
         {
           method: "PUT",
           body: JSON.stringify(requestObject),
@@ -66,7 +67,7 @@ class RoomEdit extends React.Component<RoomEditProps, RoomEditState> {
   startDelete = async () => {
     try {
       const res = await fetch(
-        `http://localhost:4000/room/${this.props.postToUpdate.id}`,
+        `${APIURL}/room/${this.props.postToUpdate.id}`,
         {
           method: "DELETE",
           headers: new Headers({

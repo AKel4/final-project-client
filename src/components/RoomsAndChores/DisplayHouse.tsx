@@ -4,10 +4,8 @@ import { Container } from "reactstrap";
 import background from "../../assets/background.png";
 
 import AccordianDisplay from "./RoomTable/AccordianDisplay";
-import AccordianEdit from "./RoomTable/Accordian/AccordianEdit";
 import { IRoomGetAllResponse } from "./RoomTable/room.getall.interface";
-import RoomCreate from "./RoomTable/RoomCreate";
-import RoomEdit from "./RoomTable/RoomEdit";
+import APIURL from '../../helpers/environment'
 
 interface DisplayProps {
   token: string | null;
@@ -35,7 +33,7 @@ class Display extends React.Component<DisplayProps, DisplayState> {
   // ! start of fetchRooms()--------------------------------------
   fetchRooms = async () => {
     try {
-      const res = await fetch("http://localhost:4000/room/myrooms", {
+      const res = await fetch(`${APIURL}/room/myrooms`, {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",

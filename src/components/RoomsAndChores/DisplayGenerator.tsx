@@ -6,7 +6,8 @@ import {
   IChores,
   IRoomGetAllResponse,
 } from "./RoomTable/room.getall.interface";
-import { Alert, Badge, Button, ListGroup } from "react-bootstrap";
+import APIURL from '../../helpers/environment'
+import { Badge, Button, ListGroup } from "react-bootstrap";
 
 interface DisplayGeneratorProps {
   token: string | null;
@@ -41,7 +42,7 @@ class DisplayGenerator extends React.Component<
 
   fetchForRandom = async () => {
     try {
-      const res = await fetch("http://localhost:4000/room/myrooms", {
+      const res = await fetch(`${APIURL}/room/myrooms`, {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",

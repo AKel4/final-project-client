@@ -1,6 +1,7 @@
 import React from "react";
 import Badge from "react-bootstrap/esm/Badge";
 import { IChores } from "../RoomTable/room.getall.interface";
+import APIURL from '../../../helpers/environment'
 
 interface ChoreDeleteProps {
   chore: IChores;
@@ -18,7 +19,7 @@ class ChoreDelete extends React.Component<ChoreDeleteProps, ChoreDeleteState> {
   deleteChore = async () => {
     try {
       const res = await fetch(
-        `http://localhost:4000/chore/${this.props.chore.id}`,
+        `${APIURL}/chore/${this.props.chore.id}`,
         {
           method: "DELETE",
           headers: new Headers({

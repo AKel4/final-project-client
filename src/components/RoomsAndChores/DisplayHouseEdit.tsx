@@ -2,8 +2,7 @@ import React from "react";
 
 import { Container } from "reactstrap";
 import background from "../../assets/background.png";
-
-import AccordianDisplay from "./RoomTable/AccordianDisplay";
+import APIURL from '../../helpers/environment'
 import AccordianEdit from "./RoomTable/Accordian/AccordianEdit";
 import { IRoomGetAllResponse } from "./RoomTable/room.getall.interface";
 import RoomCreate from "./RoomTable/RoomCreate";
@@ -37,7 +36,7 @@ class DisplayEdit extends React.Component<DisplayEditProps, DisplayEditState> {
   // ! start of fetchRooms()--------------------------------------
   fetchRooms = async () => {
     try {
-      const res = await fetch("http://localhost:4000/room/myrooms", {
+      const res = await fetch(`${APIURL}/room/myrooms`, {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -52,26 +51,10 @@ class DisplayEdit extends React.Component<DisplayEditProps, DisplayEditState> {
       console.log({ error });
     }
   };
-  fetchAdmin = async () => {
-    try {
-      const res = await fetch("http://localhost:4000/room/allroom", {
-        method: "GET",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          Authorization: String(localStorage.getItem("admin")),
-        }),
-      });
-      const data = await res.json();
-      this.setState({ rooms: data });
-
-      console.log(data);
-    } catch (error) {
-      console.log({ error });
-    }
-  };
+  
 
   componentDidMount = () => {
-    this.props.role === true ? this.fetchAdmin() : this.fetchRooms();
+    this.fetchRooms();
   };
   // ?End of fetchRooms()--------------------------------------
 

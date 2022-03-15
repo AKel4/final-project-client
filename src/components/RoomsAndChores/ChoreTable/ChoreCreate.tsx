@@ -7,11 +7,12 @@ import { Label, Input } from "reactstrap";
 import Modal from "react-bootstrap/Modal";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalBody from "react-bootstrap/ModalBody";
+import { Badge, CloseButton } from "react-bootstrap";
 import {
   IChores,
   IRoomGetAllResponse,
 } from "../RoomTable/room.getall.interface";
-import { Badge, CloseButton } from "react-bootstrap";
+import APIURL from '../../../helpers/environment'
 
 interface ChoreCreateProps {
   token: string | null;
@@ -61,7 +62,7 @@ class ChoreCreate extends React.Component<ChoreCreateProps, ChoreCreateState> {
     };
 
     try {
-      const res = await fetch("http://localhost:4000/chore/create", {
+      const res = await fetch(`${APIURL}/chore/create`, {
         method: "POST",
         body: JSON.stringify(requestObject),
         headers: new Headers({

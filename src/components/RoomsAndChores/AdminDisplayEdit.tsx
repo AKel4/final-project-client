@@ -1,4 +1,5 @@
 import React from "react";
+import APIURL from '../../helpers/environment'
 
 import { Container } from "reactstrap";
 import background from "../../assets/background.png";
@@ -37,7 +38,7 @@ class DisplayEdit extends React.Component<DisplayEditProps, DisplayEditState> {
 
   fetchAdmin = async () => {
     try {
-      const res = await fetch("http://localhost:4000/room/allroom", {
+      const res = await fetch(`${APIURL}/room/allroom`, {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 import * as React from "react";
-import { OverlayTrigger } from "react-bootstrap";
 import Alert from "react-bootstrap/esm/Alert";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
+import APIURL from '../../helpers/environment'
 
 interface SignupProps {
   updateLocalStorage: (newToken: string, adminStatus: string) => void;
@@ -44,7 +44,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
 
     try {
 
-      const res = await fetch("http://localhost:4000/user/signup", {
+      const res = await fetch(`${APIURL}/user/signup`, {
         method: "POST",
         body: JSON.stringify(requestObject),
         headers: new Headers({
