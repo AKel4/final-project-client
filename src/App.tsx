@@ -8,7 +8,7 @@ import "./App.css";
 import UserNav from "./components/RoomsAndChores/UserNavbar/UserNav";
 import AuthMain from "./components/Auth/Navbar/AuthMain";
 import Main from "./components/RoomsAndChores/UserNavbar/Main";
-import APIURL from "./helpers/environment";
+
 
 const App = () => {
   const [token, setToken] = useState<string | null>("");
