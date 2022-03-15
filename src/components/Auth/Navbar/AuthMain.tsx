@@ -21,7 +21,6 @@ class AuthMain extends React.Component<AuthMainProps, AuthMainState> {
   render() {
     return (
       <React.Fragment>
-        <Logout clearLocalStorage={this.props.clearLocalStorage} />
         <Routes>
           <Route path="/about" element={<About />} />
           <Route

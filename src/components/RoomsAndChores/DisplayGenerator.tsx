@@ -1,8 +1,6 @@
 import React from "react";
 import Dropdown from "react-bootstrap/esm/Dropdown";
 import DropdownButton from "react-bootstrap/esm/DropdownButton";
-import Generator from "../RandomGenerator/Generator";
-import ChoreCreate from "./ChoreTable/ChoreCreate";
 import background from "../../assets/background.png";
 import {
   IChores,
@@ -85,8 +83,8 @@ class DisplayGenerator extends React.Component<
       );
       const generatorRules = allChores.filter((chore) => {
         return chore.time < Number(this.state.chosenTime)
-        &&
-        chore.roomId ===  this.state.selectedRoomId
+        ||
+        chore.roomId ===  this.state.selectedRoomId 
       })
     
     console.log(generatorRules, 'RULES')
@@ -119,6 +117,10 @@ class DisplayGenerator extends React.Component<
           fontFamily: "monospace",
         }}
       >
+        <h4 style={{border: 'solid 2px #1CA5B8', textAlign: 'center'}}>Choose a time-limit and a room to get a more specific random chore.
+        <br />
+        <br />
+         Or click 'Generate chore' to get a completely random chore!</h4>
         <div>
           <DropdownButton
             id="dropdown-button-dark-example2"
