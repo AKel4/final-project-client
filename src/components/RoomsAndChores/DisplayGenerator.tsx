@@ -18,7 +18,8 @@ interface DisplayGeneratorState {
   selectedRoomId: string | null;
   selectedRoomName: string | null;
   generatedChore: any | null;
-  chosenTime: number | null
+  chosenTime: number | null;
+  show: boolean;
 }
 
 class DisplayGenerator extends React.Component<
@@ -33,7 +34,8 @@ class DisplayGenerator extends React.Component<
       selectedRoomId: null,
       selectedRoomName: null,
       generatedChore: null,
-      chosenTime: null
+      chosenTime: null,
+      show: false,
     };
   }
 
@@ -58,14 +60,16 @@ class DisplayGenerator extends React.Component<
     this.fetchForRandom();
   };
 
- 
-
   generateRooms = () => {
-    console.log(this.state.selectedRoomId)
+    // console.log(this.state.selectedRoomId);
     return this.state.rooms.map((room, index) => (
       <Dropdown.Item
         onClick={() =>
-          this.setState({ ...this.state, selectedRoomId: room.id, selectedRoomName: room.room })
+          this.setState({
+            ...this.state,
+            selectedRoomId: room.id,
+            selectedRoomName: room.room,
+          })
         }
       >
         {room.room}
@@ -73,38 +77,31 @@ class DisplayGenerator extends React.Component<
     ));
   };
 
-
   generateChore() {
-    console.log(this.state.chosenTime, 'TIME FROM BUTTON')
+    console.log(this.state.chosenTime, "TIME FROM BUTTON");
     const allChores = this.state.rooms.reduce(
       (chores, room) => [...chores, ...(room.chores || [])],
       [] as IChores[]
-
+    );
+    const generatorRules = allChores.filter((chore) => {
+      return (
+        chore.time < Number(this.state.chosenTime) &&
+        chore.roomId === this.state.selectedRoomId
       );
-      const generatorRules = allChores.filter((chore) => {
-        return chore.time < Number(this.state.chosenTime)
-        ||
-        chore.roomId ===  this.state.selectedRoomId 
-      })
-    
-    console.log(generatorRules, 'RULES')
+    });
 
+    console.log(generatorRules, "RULES");
 
     const randomNum = [Math.floor(Math.random() * generatorRules.length)];
     const choreIndex = Number(randomNum);
     const randomChore = generatorRules[choreIndex];
-
     this.setState({ ...this.state, generatedChore: randomChore });
-
 
     console.log(allChores, "all chores");
     console.log(randomNum, "random num");
     console.log(choreIndex, "chore index");
     console.log(randomChore, "random chore");
   }
-
-
-    
 
   render() {
     return (
@@ -117,10 +114,14 @@ class DisplayGenerator extends React.Component<
           fontFamily: "monospace",
         }}
       >
-        <h4 style={{border: 'solid 2px #1CA5B8', textAlign: 'center'}}>Choose a time-limit and a room to get a more specific random chore.
-        <br />
-        <br />
-         Or click 'Generate chore' to get a completely random chore!</h4>
+        <h4 style={{ border: "solid 2px #1CA5B8", textAlign: "center" }}>
+          Choose a time-limit <strong>AND</strong> a room to get a more specific
+          random chore.
+          <br />
+          <strong>OR</strong>
+          <br />
+          click 'Generate chore' to get a completely random chore!
+        </h4>
         <div>
           <DropdownButton
             id="dropdown-button-dark-example2"
@@ -129,13 +130,25 @@ class DisplayGenerator extends React.Component<
             title="Choose time limit"
             className="mt-2"
           >
-            <Dropdown.Item onClick={() => this.setState({chosenTime: 10})} >10 minutes</Dropdown.Item>
-            <Dropdown.Item onClick={() => this.setState({chosenTime: 20})}>20 minutes</Dropdown.Item>
-            <Dropdown.Item onClick={() => this.setState({chosenTime: 30})}>30 minutes</Dropdown.Item>
-            <Dropdown.Item onClick={() => this.setState({chosenTime: 40})}>40 minutes</Dropdown.Item>
-            <Dropdown.Item onClick={() => this.setState({chosenTime: 60})}>60 minutes</Dropdown.Item>
-            <Dropdown.Item onClick={() => this.setState({chosenTime: 100})}>unlimited</Dropdown.Item>
-          </DropdownButton >
+            <Dropdown.Item onClick={() => this.setState({ chosenTime: 10 })}>
+              10 minutes
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => this.setState({ chosenTime: 20 })}>
+              20 minutes
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => this.setState({ chosenTime: 30 })}>
+              30 minutes
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => this.setState({ chosenTime: 40 })}>
+              40 minutes
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => this.setState({ chosenTime: 60 })}>
+              60 minutes
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => this.setState({ chosenTime: 100 })}>
+              unlimited
+            </Dropdown.Item>
+          </DropdownButton>
         </div>
 
           <h3>time limit: {this.state.chosenTime}minutes</h3>
@@ -170,7 +183,7 @@ class DisplayGenerator extends React.Component<
         </div>
 
         <div>
-          <br/>
+          <br />
           {this.state.generatedChore && (
             <ListGroup as="ol" numbered>
               <ListGroup.Item
