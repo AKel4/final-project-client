@@ -67,7 +67,6 @@ class Signup extends React.Component<SignupProps, SignupState> {
         houseCode: "",
       });
     } catch (error: any) {
-      console.log({ error });
       this.setState({show: true, errorMessage: error.message})
     }
   };

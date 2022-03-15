@@ -6,6 +6,6 @@ switch (window.location.hostname) {
     break;
 
   case "clean-client-ak.herokuapp.com":
-    APIURL = "https://clean-client-ak.herokuapp.com";
+    APIURL = " https://clean-server-ak.herokuapp.com";
 }
 export default APIURL;
