@@ -31,7 +31,7 @@ class Main extends React.Component<MainProps, MainState> {
 
           <Route path="/" element={<Display token={this.props.token} />} />
 
-          {!JSON.parse(localStorage.getItem("admin") || "true") ? (
+          {localStorage.getItem("admin") === "true" ? (
             <Route
               path="/edit"
               element={

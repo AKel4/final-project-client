@@ -37,12 +37,13 @@ class DisplayEdit extends React.Component<DisplayEditProps, DisplayEditState> {
   // ! start of fetchAdmin()--------------------------------------
 
   fetchAdmin = async () => {
+    const token = localStorage.getItem('token')
     try {
-      const res = await fetch(`${APIURL}/room/allroom`, {
+      const res = await fetch(`${APIURL}/room/allrooms`, {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
-          Authorization: String(localStorage.getItem("admin")),
+          Authorization: token ? token : ''
         }),
       });
       const data = await res.json();
