@@ -88,7 +88,7 @@ class About extends React.Component<AboutProps, AboutState> {
 
           <div className="guide">
             <p>
-              That's where this idea was born! If I can turn daily tasks in to
+              That's where this idea was born! If I make daily tasks
               interesting, new and challenging, with a sense of urgency to it;
               Then maybe it can make peoples' lives easier.
               <strong>The steps to get started are outlined below: </strong>{" "}
