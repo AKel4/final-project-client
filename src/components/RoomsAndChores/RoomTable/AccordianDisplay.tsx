@@ -12,7 +12,9 @@ interface AccordianDisplayProps {
   rooms: IRoomGetAllResponse[];
 }
 
-interface AccordianDisplayState {}
+interface AccordianDisplayState {
+  roomName: string | null
+}
 
 class AccordianDisplay extends React.Component<
   AccordianDisplayProps,
@@ -20,28 +22,10 @@ class AccordianDisplay extends React.Component<
 > {
   constructor(props: AccordianDisplayProps) {
     super(props);
+    this.state = {
+      roomName: null
+    }
   }
-
-  //? start of chore display--------------------------------------------------------
-  choreDisplay = (chores: IChores[]) => {
-    return chores.map((chore, index) => (
-      <ListGroup as="ol" numbered>
-        <ListGroup.Item
-          as="li"
-          className="d-flex justify-content-between align-items-start"
-        >
-          <div className="ms-2 me-auto">
-            <div className="fw-bold">{chore.chore}</div>
-            {chore.desc}
-          </div>
-          <Badge bg="primary" pill>
-            {chore.time}mins
-          </Badge>
-        </ListGroup.Item>
-      </ListGroup>
-    ));
-  };
-  //! end of chore display-----------------------------------------------------------
 
   //? start of room display----------------------------------------------------------
   roomDisplay = () => {
@@ -64,9 +48,35 @@ class AccordianDisplay extends React.Component<
 
         <Accordion.Body>{this.choreDisplay(room.chores)}</Accordion.Body>
       </Accordion.Item>
+      
+      ));
+    };
+  //! end of room display--------------------------------------------------------------
+
+
+  
+  //? start of chore display--------------------------------------------------------
+  choreDisplay = (chores: IChores[]) => {
+    return chores.map((chore, index) => (
+      <ListGroup as="ol" numbered>
+        <ListGroup.Item
+          as="li"
+          className="d-flex justify-content-between align-items-start"
+        >
+          <div className="ms-2 me-auto">
+            <div className="fw-bold">{chore.chore}</div>
+            {chore.desc}
+          </div>
+          <Badge bg="primary" pill>
+            {chore.time}mins
+          </Badge>
+        </ListGroup.Item>
+      </ListGroup>
     ));
   };
-  //! end of room display--------------------------------------------------------------
+  //! end of chore display-----------------------------------------------------------
+
+
 
   render() {
     return (

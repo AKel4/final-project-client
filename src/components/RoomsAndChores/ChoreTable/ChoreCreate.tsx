@@ -8,10 +8,8 @@ import Modal from "react-bootstrap/Modal";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalBody from "react-bootstrap/ModalBody";
 import { Badge, CloseButton } from "react-bootstrap";
-import {
-  IRoomGetAllResponse
-} from "../RoomTable/room.getall.interface";
-import APIURL from '../../../helpers/environment'
+import { IRoomGetAllResponse } from "../RoomTable/room.getall.interface";
+import APIURL from "../../../helpers/environment";
 
 interface ChoreCreateProps {
   token: string | null;
@@ -50,7 +48,7 @@ class ChoreCreate extends React.Component<ChoreCreateProps, ChoreCreateState> {
   }
 
   handleSubmit = async (e: React.MouseEvent<HTMLFormElement>) => {
-    console.log(this.props.room.id);
+    console.log(this.props.room.room);
     e.preventDefault();
     console.log("create chore button clicked");
     const requestObject = {
@@ -156,7 +154,6 @@ class ChoreCreate extends React.Component<ChoreCreateProps, ChoreCreateState> {
                 >
                   Add this chore
                 </Button>
-                {/* <Button onClick={this.handleClose}> Close </Button> */}
               </Form>
             </ModalBody>
           </ModalHeader>

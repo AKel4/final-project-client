@@ -8,6 +8,7 @@ import {
 } from "./RoomTable/room.getall.interface";
 import APIURL from "../../helpers/environment";
 import { Badge, Button, CloseButton, ListGroup, Modal } from "react-bootstrap";
+import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
 interface DisplayGeneratorProps {
   token: string | null;
@@ -20,6 +21,8 @@ interface DisplayGeneratorState {
   selectedRoomName: string | null;
   generatedChore: any | null;
   chosenTime: number | null;
+  roomName: string | null;
+  roomId: string | null;
   show: boolean;
 }
 
@@ -36,6 +39,8 @@ class DisplayGenerator extends React.Component<
       selectedRoomName: null,
       generatedChore: null,
       chosenTime: null,
+      roomName: null,
+      roomId: null,
       show: false,
     };
   }
@@ -96,16 +101,17 @@ class DisplayGenerator extends React.Component<
     const randomChore = generatorRules[choreIndex];
     this.setState({ ...this.state, generatedChore: randomChore, show: true });
 
-    console.log(generatorRules, "RULES");
-    console.log(allChores, "all chores");
-    console.log(randomNum, "random num");
-    console.log(choreIndex, "chore index");
-    console.log(randomChore, "random chore");
+    // console.log(generatorRules, "RULES");
+    // console.log(allChores, "all chores");
+    // console.log(randomNum, "random num");
+    // console.log(choreIndex, "chore index");
+    // console.log(randomChore, "random chore");
   }
 
   //! Generate a random chore button ----------------------------------
   generateRandom() {
     console.log(this.state.chosenTime, "TIME FROM BUTTON");
+
     const allChores = this.state.rooms.reduce(
       (chores, room) => [...chores, ...(room.chores || [])],
       [] as IChores[]
@@ -116,10 +122,26 @@ class DisplayGenerator extends React.Component<
     const randomChore = allChores[choreIndex];
     this.setState({ ...this.state, generatedChore: randomChore, show: true });
 
+    console.log(randomChore.roomId, "RANDOM CHORE ROOMID");
+    console.log(this.state.selectedRoomName, "*********");
     console.log(allChores, "all chores");
     console.log(randomNum, "random num");
     console.log(choreIndex, "chore index");
     console.log(randomChore, "random chore");
+
+    const fetchRoomName = async () => {
+      const res = await fetch(`${APIURL}/room/target/${randomChore.roomId}`, {
+        method: "GET",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: String(localStorage.getItem("token")),
+        }),
+      });
+      const data = await res.json();
+      console.log(data[0].room);
+      this.setState({ roomName: data[0].room });
+    };
+    fetchRoomName();
   }
 
   handleClose = () => {
@@ -149,18 +171,20 @@ class DisplayGenerator extends React.Component<
               marginTop: "6vh",
               fontFamily: "monospace",
             }}
-            onClick={() => this.generateRandom()}
+            onClick={() => {
+              this.generateRandom();
+            }}
           >
             Generate Random!
           </Button>
         </div>
-            <br />
-            <br />
-            <br />
+        <br />
+        <br />
+        <br />
         <div>
           <h4 style={{ border: "solid 2px #1CA5B8", textAlign: "center" }}>
-            Choose a time-limit <strong>AND</strong> a room to get a more specific
-            random chore.
+            Choose a time-limit <strong>AND</strong> a room to get a more
+            specific random chore.
           </h4>
           <DropdownButton
             id="dropdown-button-dark-example2"
@@ -220,11 +244,11 @@ class DisplayGenerator extends React.Component<
         <div>
           <br />
           <Modal show={this.state.show} style={{ alignContent: "center" }}>
-            <CloseButton
-              style={{ marginLeft: "90%", fontFamily: "monospace" }}
-              onClick={() => this.handleClose()}
-              aria-label="Hide"
-            />
+              <CloseButton
+                style={{ marginLeft: "90%", fontFamily: "monospace" }}
+                onClick={() => this.handleClose()}
+                aria-label="Hide"
+              />
             {this.state.generatedChore && (
               <ListGroup as="ol" numbered>
                 <ListGroup.Item
@@ -237,6 +261,9 @@ class DisplayGenerator extends React.Component<
                     </div>
                     {this.state.generatedChore.desc}
                   </div>
+                  <Badge bg="light" text="dark" pill>
+                    {this.state.roomName}
+                  </Badge>
                   <Badge bg="primary" pill>
                     {this.state.generatedChore.time}mins
                   </Badge>

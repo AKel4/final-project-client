@@ -46,6 +46,7 @@ class Display extends React.Component<DisplayProps, DisplayState> {
       console.log(data);
     } catch (error) {
       console.log({ error });
+      
     }
   };
 
