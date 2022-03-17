@@ -8,7 +8,7 @@ import {
 } from "./RoomTable/room.getall.interface";
 import APIURL from "../../helpers/environment";
 import { Badge, Button, CloseButton, ListGroup, Modal } from "react-bootstrap";
-import ModalHeader from "react-bootstrap/esm/ModalHeader";
+
 
 interface DisplayGeneratorProps {
   token: string | null;
@@ -56,7 +56,7 @@ class DisplayGenerator extends React.Component<
       });
       const data = await res.json();
       this.setState({ rooms: data, chores: data });
-      console.log(data);
+
     } catch (error) {
       console.log({ error });
     }
@@ -85,7 +85,7 @@ class DisplayGenerator extends React.Component<
 
   //! Generate a specific chore button ----------------------------------
   generateSpecific() {
-    console.log(this.state.chosenTime, "TIME FROM BUTTON");
+  
     const allChores = this.state.rooms.reduce(
       (chores, room) => [...chores, ...(room.chores || [])],
       [] as IChores[]
@@ -101,16 +101,11 @@ class DisplayGenerator extends React.Component<
     const randomChore = generatorRules[choreIndex];
     this.setState({ ...this.state, generatedChore: randomChore, show: true });
 
-    // console.log(generatorRules, "RULES");
-    // console.log(allChores, "all chores");
-    // console.log(randomNum, "random num");
-    // console.log(choreIndex, "chore index");
-    // console.log(randomChore, "random chore");
   }
 
   //! Generate a random chore button ----------------------------------
   generateRandom() {
-    console.log(this.state.chosenTime, "TIME FROM BUTTON");
+  
 
     const allChores = this.state.rooms.reduce(
       (chores, room) => [...chores, ...(room.chores || [])],
@@ -122,13 +117,6 @@ class DisplayGenerator extends React.Component<
     const randomChore = allChores[choreIndex];
     this.setState({ ...this.state, generatedChore: randomChore, show: true });
 
-    console.log(randomChore.roomId, "RANDOM CHORE ROOMID");
-    console.log(this.state.selectedRoomName, "*********");
-    console.log(allChores, "all chores");
-    console.log(randomNum, "random num");
-    console.log(choreIndex, "chore index");
-    console.log(randomChore, "random chore");
-
     const fetchRoomName = async () => {
       const res = await fetch(`${APIURL}/room/target/${randomChore.roomId}`, {
         method: "GET",
@@ -138,7 +126,7 @@ class DisplayGenerator extends React.Component<
         }),
       });
       const data = await res.json();
-      console.log(data[0].room);
+
       this.setState({ roomName: data[0].room });
     };
     fetchRoomName();
