@@ -1,5 +1,7 @@
 import React from "react";
+//* styling library imports
 import { Button } from "reactstrap";
+//* Component imports
 import Login from "./Login";
 import Signup from "./Signup";
 

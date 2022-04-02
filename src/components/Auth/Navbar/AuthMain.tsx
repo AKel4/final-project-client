@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import About from "../../Home/AboutUs";
 import Auth from "../Auth";
 
-
 interface AuthMainProps {
   clearLocalStorage: () => void;
   updateLocalStorage: (newToken: string, adminStatus: string) => void;

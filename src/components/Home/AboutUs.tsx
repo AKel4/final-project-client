@@ -1,7 +1,8 @@
 import React from "react";
+//* styling library imports
+import { List } from "reactstrap";
 import background from "../../assets/background.png";
 import "./About.css";
-import { List } from "reactstrap";
 
 interface AboutProps {}
 
@@ -91,7 +92,9 @@ class About extends React.Component<AboutProps, AboutState> {
               That's where this idea was born! If I make daily tasks
               interesting, new and challenging, with a sense of urgency to it;
               Then maybe it can make peoples' lives easier.
-              <strong>The steps to get started are outlined below: </strong>{" "}
+              <strong>
+                The steps to get started are outlined below:{" "}
+              </strong>{" "}
             </p>
             <List style={{ fontWeight: "bold" }}>
               <ol>

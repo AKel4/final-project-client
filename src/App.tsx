@@ -9,7 +9,6 @@ import UserNav from "./components/RoomsAndChores/UserNavbar/UserNav";
 import AuthMain from "./components/Auth/Navbar/AuthMain";
 import Main from "./components/RoomsAndChores/UserNavbar/Main";
 
-
 const App = () => {
   const [token, setToken] = useState<string | null>("");
   const [role, setRole] = useState(false);

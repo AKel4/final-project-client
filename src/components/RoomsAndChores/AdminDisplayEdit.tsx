@@ -1,9 +1,9 @@
 import React from "react";
 import APIURL from '../../helpers/environment'
-
+//* styling library imports
 import { Container } from "reactstrap";
 import background from "../../assets/background.png";
-
+//* Component imports
 import { IRoomGetAllResponse } from "./RoomTable/room.getall.interface";
 import RoomCreate from "./RoomTable/RoomCreate";
 import RoomEdit from "./RoomTable/RoomEdit";
@@ -34,8 +34,7 @@ class DisplayEdit extends React.Component<DisplayEditProps, DisplayEditState> {
     };
   }
 
-  // ! start of fetchAdmin()--------------------------------------
-
+  // ! start of fetchAdmin()----------------------------------------------------------------------------------
   fetchAdmin = async () => {
     const token = localStorage.getItem('token')
     try {
@@ -58,7 +57,7 @@ class DisplayEdit extends React.Component<DisplayEditProps, DisplayEditState> {
   componentDidMount = () => {
     this.fetchAdmin();
   };
-  // ?End of fetchAdmin()--------------------------------------
+  // ?End of fetchAdmin()------------------------------------------------------------------------------------------
 
   handleClose = () => {
     this.setState({ show: false });

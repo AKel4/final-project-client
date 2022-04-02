@@ -1,15 +1,9 @@
 import * as React from "react";
+//* styling library imports
 import Alert from "react-bootstrap/esm/Alert";
-import {
-  Button,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-} from "reactstrap";
+import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 
-import APIURL from '../../helpers/environment'
+import APIURL from "../../helpers/environment";
 
 interface LoginProps {
   updateLocalStorage: (newToken: string, adminStatus: string) => void;
@@ -21,7 +15,7 @@ interface LoginState {
   email: string;
   password: string;
   errorMessage: string;
-  show: boolean
+  show: boolean;
 }
 
 class Login extends React.Component<LoginProps, LoginState> {
@@ -32,7 +26,7 @@ class Login extends React.Component<LoginProps, LoginState> {
       email: "",
       password: "",
       errorMessage: "",
-      show: false
+      show: false,
     };
   }
 
@@ -67,7 +61,7 @@ class Login extends React.Component<LoginProps, LoginState> {
       });
     } catch (error: any) {
       console.log({ error });
-      this.setState({show: true, errorMessage: error.message})
+      this.setState({ show: true, errorMessage: error.message });
     }
   };
 
@@ -88,7 +82,7 @@ class Login extends React.Component<LoginProps, LoginState> {
       <div>
         <h2>Login</h2>
         <Container>
-        {this.state.show ? this.alert() : null}
+          {this.state.show ? this.alert() : null}
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label htmlFor="email" style={{ fontFamily: "Poppins" }}>

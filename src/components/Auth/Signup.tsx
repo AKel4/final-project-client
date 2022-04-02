@@ -1,7 +1,9 @@
 import * as React from "react";
+//* styling library imports
 import Alert from "react-bootstrap/esm/Alert";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
-import APIURL from '../../helpers/environment'
+
+import APIURL from "../../helpers/environment";
 
 interface SignupProps {
   updateLocalStorage: (newToken: string, adminStatus: string) => void;
@@ -29,7 +31,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
       houseCode: "",
 
       show: false,
-      errorMessage: ''
+      errorMessage: "",
     };
   }
 
@@ -43,7 +45,6 @@ class Signup extends React.Component<SignupProps, SignupState> {
     };
 
     try {
-
       const res = await fetch(`${APIURL}/user/signup`, {
         method: "POST",
         body: JSON.stringify(requestObject),
@@ -53,8 +54,8 @@ class Signup extends React.Component<SignupProps, SignupState> {
       });
       const data = await res.json();
 
-      if (!data.hasOwnProperty('user')) {
-        throw new Error(data.message)
+      if (!data.hasOwnProperty("user")) {
+        throw new Error(data.message);
       }
 
       this.props.updateLocalStorage(data.sessionToken, this.state.admin);
@@ -67,7 +68,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
         houseCode: "",
       });
     } catch (error: any) {
-      this.setState({show: true, errorMessage: error.message})
+      this.setState({ show: true, errorMessage: error.message });
     }
   };
 
@@ -87,7 +88,7 @@ class Signup extends React.Component<SignupProps, SignupState> {
     return (
       <div>
         <Container>
-        {this.state.show ? this.alert() : null}
+          {this.state.show ? this.alert() : null}
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label htmlFor="email" style={{ fontFamily: "Poppins" }}>
